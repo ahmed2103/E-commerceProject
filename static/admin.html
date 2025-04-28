@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type="text"] {
+            width: 80%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        button{
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 30px;
+        }
+        #userControl{
+            width: 70%;
+            display: none;
+        }
+        #userTable{
+            width: 60%;
+            margin: 0 auto;
+        }
+
+    </style>
+    <script src="../script/admin.js"></script>
+</head>
+<body>
+    <h1>hello</h1>
+    <select name="manager" id="viewsManager">
+        <option value="admin" disabled  selected >please choose view</option>
+        <option value="user" selected>User</option>
+        <option value="product">Product</option>
+        <option value="order">Order</option>
+    </select>
+    <div id="productControl">
+        <h2>User</h2>
+        <label for="userId">please enter user id</label>
+        <input type="text" id="userId" name="userId">
+        <table border="1" id="userTable">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr>
+                    <td id="userName">
+                        <input type="text" name="userName" value="">
+                    </td>
+                    <td id="userRoles">
+                        <label for="roleModification"></label>
+                        <select name="" id="roleModification">
+
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                            <option value="vendor">Vendor</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button id="userUpdate">Update</button>
+                        <button id="userDelete">Delete</button>
+                        <button id="userAdd">Add</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="userControl">
+            <h2>User</h2>
+            <label for="userId">please enter user id</label>
+            <input type="text" id="userId" name="userId">
+            <table border="1" id="userTable">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td id="userName">
+                        <input type="text" name="userName" value="">
+                    </td>
+                    <td id="userRoles">
+                        <label for="roleModification"></label>
+                        <select name="" id="roleModification">
+
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                            <option value="vendor">Vendor</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button id="userUpdate">Update</button>
+                        <button id="userDelete">Delete</button>
+                        <button id="userAdd">Add</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+    </div>
+</body>
+</html>
