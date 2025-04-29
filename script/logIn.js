@@ -1,27 +1,37 @@
 window.addEventListener('load', () => {
-    const form = document.forms[0]
-    window.addEventListener('submit', (e) => {
-        localStorage.removeItem('user');
-        e.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        let user;
+    const form = document.forms[0];
 
-        fetch('http://localhost:3000/users').then(res => res.json()).then(users => {
-            for (user of users) {
-                if (user.email === email) {
-                    if (user.password === password) {
-                        localStorage.setItem('user', JSON.stringify(user));
-                        window.location.href = `${user.role}.html`;
-                        break;
-                    } else {
-                        alert('Incorrect password');
-                        break;
-                    }
-                }else if (user.email !== email && user.id === users[users.length - 1].id) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('user');
+        localStorage.removeItem('users');
+
+
+        const name = document.getElementById('name').value;
+        const password = document.getElementById('password').value;
+
+        fetch('http://localhost:3000/users')
+            .then(res => res.json())
+            .then(users => {
+                localStorage.setItem('users', JSON.stringify(users));
+                const user = users.find(user => user.name === name);
+
+                if (!user) {
                     alert('User not found');
+                    return;
                 }
-            }
-        })
-    })
-})
+
+                if (user.password !== password) {
+                    alert('Incorrect password');
+                    return;
+                }
+
+                localStorage.setItem('user', JSON.stringify(user));
+                window.location.href = `${user.role}.html`;
+            })
+            .catch(err => {
+                console.error('Error fetching users:', err);
+                alert('An error occurred');
+            });
+    });
+});

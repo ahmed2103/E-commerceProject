@@ -43,95 +43,88 @@
             cursor: pointer;
             margin-left: 30px;
         }
-        #userControl{
+        #userControl, #productControl{
             width: 70%;
             display: none;
         }
-        #userTable{
+        #userTable, #productTable{
             width: 60%;
-            margin: 0 auto;
         }
-
+        .userRow{
+            display: none;
+        }
     </style>
     <script src="../script/admin.js"></script>
 </head>
 <body>
-    <h1>hello</h1>
-    <select name="manager" id="viewsManager">
-        <option value="admin" disabled  selected >please choose view</option>
-        <option value="user" selected>User</option>
-        <option value="product">Product</option>
-        <option value="order">Order</option>
-    </select>
-    <div id="productControl">
-        <h2>User</h2>
-        <label for="userId">please enter user id</label>
-        <input type="text" id="userId" name="userId">
-        <table border="1" id="userTable">
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-               <tr>
-                    <td id="userName">
-                        <input type="text" name="userName" value="">
-                    </td>
-                    <td id="userRoles">
-                        <label for="roleModification"></label>
-                        <select name="" id="roleModification">
+<h1>hello</h1>
+<select name="manager" id="viewsManager">
+    <option value="admin" disabled selected>please choose view</option>
+    <option value="user" selected>User</option>
+    <option value="product">Product</option>
+    <option value="order">Order</option>
+</select>
+<div id="userControl">
+    <h2>User</h2>
+    <table id="userTable" border="1">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody id="userBody">
+        <tr class="userRow">
+            <td><span></span></td>
+            <td><input type="text" class="userName" value=""></td>
+            <td>
+                <select class="roleMod">
+                    <option value="admin">admin</option>
+                    <option value="customer">customer</option>
+                    <option value="seller">seller</option>
+                </select>
+            </td>
+            <td>
+                <button class="userUpdate">Update</button>
+                <button class="userDelete">Delete</button>
 
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
-                            <option value="vendor">Vendor</option>
-                        </select>
-                    </td>
-                    <td>
-                        <button id="userUpdate">Update</button>
-                        <button id="userDelete">Delete</button>
-                        <button id="userAdd">Add</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div id="userControl">
-            <h2>User</h2>
-            <label for="userId">please enter user id</label>
-            <input type="text" id="userId" name="userId">
-            <table border="1" id="userTable">
-                <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td id="userName">
-                        <input type="text" name="userName" value="">
-                    </td>
-                    <td id="userRoles">
-                        <label for="roleModification"></label>
-                        <select name="" id="roleModification">
-
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
-                            <option value="vendor">Vendor</option>
-                        </select>
-                    </td>
-                    <td>
-                        <button id="userUpdate">Update</button>
-                        <button id="userDelete">Delete</button>
-                        <button id="userAdd">Add</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-    </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button id="userAdd">Add User</button>
+</div>
+<div id="productControl">
+    <h2>Product</h2>
+    <table border="1" id="productTable">
+        <thead>
+        <tr>
+            <th>product Name</th>
+            <th>status</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="productRow">
+            <td>
+                <input type="text" name="productName">
+            </td>
+            <td id="status">
+                <label></label>
+                <select name="" id="statusModification">
+                    <option value="admin">Approve</option>
+                    <option value="user">Reject</option>
+                </select>
+            </td>
+            <td>
+                <button id="prductUpdate">Update</button>
+                <button id="prductDelete">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
