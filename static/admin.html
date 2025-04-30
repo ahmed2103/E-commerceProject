@@ -60,6 +60,16 @@
         .orderDelete, .productDelete, .userDelete{
             background-color: #dc3545;
         }
+        #prev, #next {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: none;
+            margin-top: 30px;
+        }
     </style>
     <script type="module" src="../script/admin.js"></script>
 </head>
@@ -175,5 +185,7 @@
             </tbody>
         </table>
 </div>
+<button id="prev">prev</button>
+<button id="next">next</button>
 </body>
 </html>

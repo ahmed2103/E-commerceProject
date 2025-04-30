@@ -39,16 +39,18 @@ const storeInSession = (path) =>
         .catch(() => alert('Error fetching data from server'));
 
 const displayAndHide = (arr) => {
-    arr[0].style.display = 'block';
-    arr[1].style.display = 'none';
-    arr[2].style.display = 'none';
+        arr[0].style.display = 'inline-block';
+        arr[1].style.display = 'inline-block';
+        arr[2].style.display = 'block';
+        arr[3].style.display = 'none';
+        arr[4].style.display = 'none';
 }
 const truncate = (elementBody, row) => {
     const existingOrderRows = [...elementBody.querySelectorAll(row)].slice(1);
     existingOrderRows.forEach(row => row.remove());
 }
 const partitioner = (modelStr, pageNum, pageSize) =>
-     JSON.parse(localStorage.getItem(modelStr)).slice((pageNum-1), pageSize);
+     JSON.parse(localStorage.getItem(modelStr)).slice((pageNum-1) * pageSize, pageSize*pageNum);
 
 const rowsCreator = (models, itemToClone,bodyElement, objSpecific,classesList) => {
     models.forEach(model => {
@@ -65,5 +67,22 @@ const rowsCreator = (models, itemToClone,bodyElement, objSpecific,classesList) =
     newRow.style.display = 'table-row';
     bodyElement.appendChild(newRow);
 }
+const orderRowsCreator = (orderList, orderBody,rowForClone) => {
+    orderList.forEach(order => {
+        const newOrderRow = rowForClone.cloneNode(true);
+        newOrderRow.querySelector('span').textContent = order.id;
+        let orderDetailString = ``
 
-export {partitioner, changePage, storeInSession, displayAndHide, truncate, rowsCreator};
+        order.products.forEach(product => {
+            orderDetailString += `product id: ${product.productId}\tquantity: ${product.quantity}`;
+        });
+        console.log(orderDetailString);
+        newOrderRow.querySelector('pre').textContent = orderDetailString;
+        newOrderRow.querySelector('.orderState').value = order.status;
+        newOrderRow.querySelector('.orderDate').textContent = order.orderDate;
+        newOrderRow.style.display = 'table-row';
+        orderBody.appendChild(newOrderRow);
+    });
+}
+
+export {partitioner, changePage, storeInSession, displayAndHide, truncate, rowsCreator, orderRowsCreator};

@@ -1,7 +1,7 @@
-import { storeInSession, displayAndHide, truncate, partitioner, rowsCreator } from "./utils.js";
+import { storeInSession, displayAndHide, truncate, partitioner, rowsCreator,orderRowsCreator } from "./utils.js";
 
 const pageSize = 5;
-let page;
+let page = 1;
 window.addEventListener('load', () => {
     const heading1 = document.getElementsByTagName('h1')[0];
     const viewsManager = document.getElementById('viewsManager');
@@ -19,7 +19,8 @@ window.addEventListener('load', () => {
     const orderTable = document.getElementById('orderTable');
     const orderBody = document.getElementById('orderBody');
     const orderRow = document.getElementsByClassName('orderRow')[0];
-
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
 
 
     const admin = JSON.parse(localStorage.getItem('user'));
@@ -30,50 +31,29 @@ window.addEventListener('load', () => {
         switch (viewsManagerValue) {
             case 'user':
                 page = 1;
-                displayAndHide([userControl,productControl,orderControl])
-
+                displayAndHide([prev,next,userControl,productControl,orderControl])
                 await storeInSession('users');
                 truncate(userBody, '.userRow');
-
-
                 const userList = partitioner('users', page, pageSize);
                 rowsCreator(userList, userRow, userBody,'role', ['.userName', '.roleMod']);
-
                 break;
 
             case 'product':
                 page = 1;
-                displayAndHide([productControl,userControl,orderControl])
-
+                displayAndHide([prev,next,productControl,userControl,orderControl])
                 await storeInSession('products');
                 truncate(productBody, '.productRow');
                 const productList = partitioner('products', page, pageSize);
                 rowsCreator(productList, productRow,productBody,'status', ['.productName', '.statusModification']);
-
                 break;
 
             default:
                 page = 1;
-                displayAndHide([orderControl,productControl,userControl])
+                displayAndHide([prev,next,orderControl,productControl,userControl])
                 await storeInSession('orders');
                 truncate(orderBody, '.orderRow');
                 const orderList = partitioner('orders', page, pageSize);
-                console.log(orderList);
-                for (let order of orderList) {
-                    const newOrderRow = orderRow.cloneNode(true);
-                    newOrderRow.querySelector('span').textContent = order.id;
-                    let orderDetailString = ``
-
-                    order.products.forEach(product => {
-                        orderDetailString += `product id: ${product.productId}\tquantity: ${product.quantity}`;
-                    });
-                    console.log(orderDetailString);
-                    newOrderRow.querySelector('pre').textContent = orderDetailString;
-                    newOrderRow.querySelector('.orderState').value = order.status;
-                    newOrderRow.querySelector('.orderDate').textContent = order.orderDate;
-                    newOrderRow.style.display = 'table-row';
-                    orderBody.appendChild(newOrderRow);
-                }
+                orderRowsCreator(orderList,orderBody,orderRow)
         }
     });
 
@@ -229,5 +209,81 @@ window.addEventListener('load', () => {
             lastProductRow.querySelector('.statusModification').value = '';
         }
     });
+    next.addEventListener('click', async function()  {
+        page++;
+        const viewsManagerValue = viewsManager.value;
+        switch (viewsManagerValue) {
+            case 'user':
+                console.log(document.getElementById('userBody'));
+                const userList = partitioner('users', page, pageSize);
+                if (userList.length === 0) {
+                    page--;
+                    alert('No more users');
+                    return;
+                }
+                truncate(document.getElementById('userBody'), '.userRow');
+                rowsCreator(userList, userRow, userBody,'role', ['.userName', '.roleMod']);
+                break;
+
+            case 'product':
+                const productList = partitioner('products', page, pageSize);
+                if (productList.length === 0) {
+                    page--;
+                    alert('No more products');
+                    return;
+                }
+                truncate(document.getElementById('productBody'), '.productRow');
+                rowsCreator(productList, productRow,productBody,'status', ['.productName', '.statusModification']);
+                break;
+
+            default:
+                const orderList = partitioner(document.getElementById('orderBody'), page, pageSize);
+                if (orderList.length === 0) {
+                    page--;
+                    alert('No more orders');
+                    return;
+                }
+                truncate(document.getElementById('orderBody'), '.orderRow');
+                orderRowsCreator(orderList,orderBody,orderRow)
+        }
+    })
+    prev.addEventListener('click', async function()  {
+        page--;
+        const viewsManagerValue = viewsManager.value;
+        switch (viewsManagerValue) {
+            case 'user':
+                const userList = partitioner('users', page, pageSize);
+                if (userList.length === 0) {
+                    page++;
+                    alert('No more users');
+                    return;
+                }
+                truncate(document.getElementById('userBody'), '.userRow');
+
+                rowsCreator(userList, userRow, userBody,'role', ['.userName', '.roleMod']);
+                break;
+
+            case 'product':
+                const productList = partitioner('products', page, pageSize);
+                if (productList.length === 0) {
+                    page++;
+                    alert('No more products');
+                    return;
+                }
+                truncate(document.getElementById('productBody'), '.productRow');
+                rowsCreator(productList, productRow,productBody,'status', ['.productName', '.statusModification']);
+                break;
+
+            default:
+                const orderList = partitioner(document.getElementById('orderBody'), page, pageSize);
+                if (orderList.length === 0) {
+                    page++;
+                    alert('No more orders');
+                    return;
+                }
+                truncate(document.getElementById('orderBody'), '.orderRow');
+                orderRowsCreator(orderList,orderBody,orderRow)
+        }
+    })
     
 });

@@ -20,6 +20,95 @@
       "name": "Best Seller",
       "email": "seller@example.com",
       "password": "seller123"
+    },
+    {
+      "id": "4",
+      "role": "customer",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "password": "jane123"
+    },
+    {
+      "id": "5",
+      "role": "customer",
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "password": "alice123"
+    },
+    {
+      "id": "6",
+      "role": "customer",
+      "name": "Bob Brown",
+      "email": "bob@example.com",
+      "password": "bob123"
+    },
+    {
+      "id": "7",
+      "role": "customer",
+      "name": "Charlie Davis",
+      "email": "charlie@example.com",
+      "password": "charlie123"
+    },
+    {
+      "id": "8",
+      "role": "customer",
+      "name": "Diana Evans",
+      "email": "diana@example.com",
+      "password": "diana123"
+    },
+    {
+      "id": "9",
+      "role": "customer",
+      "name": "Ethan Foster",
+      "email": "ethan@example.com",
+      "password": "ethan123"
+    },
+    {
+      "id": "10",
+      "role": "customer",
+      "name": "Fiona Green",
+      "email": "fiona@example.com",
+      "password": "fiona123"
+    },
+    {
+      "id": "11",
+      "role": "customer",
+      "name": "George Harris",
+      "email": "george@example.com",
+      "password": "george123"
+    },
+    {
+      "id": "12",
+      "role": "customer",
+      "name": "Hannah Ives",
+      "email": "hannah@example.com",
+      "password": "hannah123"
+    },
+    {
+      "id": "13",
+      "role": "customer",
+      "name": "Ian Jackson",
+      "email": "ian@example.com",
+      "password": "ian123"
+    },
+    {
+      "id": "14",
+      "role": "customer",
+      "name": "Julia King",
+      "email": "julia@example.com",
+      "password": "julia123"
+    },
+    {
+      "id": "15",
+      "role": "customer",
+      "name": "Kevin Lee",
+      "email": "kevin@example.com",
+      "password": "kevin123"
+    },
+    {
+      "id": 16,
+      "name": "hell",
+      "role": "admin"
     }
   ],
   "products": [
