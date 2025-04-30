@@ -20,11 +20,6 @@
       "name": "Best Seller",
       "email": "seller@example.com",
       "password": "seller123"
-    },
-    {
-      "id": "4",
-      "name": "helloooo",
-      "role": "customer"
     }
   ],
   "products": [
@@ -61,21 +56,26 @@
       "status": "pending",
       "rating": 0,
       "reviews": []
+    },
+    {
+      "id": 3,
+      "name": "hell",
+      "status": "approved"
     }
   ],
   "orders": [
     {
-      "id": "1",
+      "id": "3",
       "customerId": 2,
       "products": [
         {
           "productId": 1,
-          "quantity": 1
+          "quantity": 2
         }
       ],
-      "totalPrice": 99.99,
-      "status": "delivered",
-      "orderDate": "2025-04-25"
+      "totalPrice": 199.98,
+      "status": "canceled",
+      "orderDate": "2025-04-27"
     }
   ]
 }

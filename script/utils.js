@@ -32,10 +32,38 @@ const changePage = (table) => {
         table.appendChild(tableRow);
     })
 }
-const storeSession = (path) =>
+const storeInSession = (path) =>
     fetch(`http://localhost:3000/${path}/`)
         .then(response => response.json())
         .then(data => localStorage.setItem(path, JSON.stringify(data)))
         .catch(() => alert('Error fetching data from server'));
 
-export {pageShow, changePage, storeSession};
+const displayAndHide = (arr) => {
+    arr[0].style.display = 'block';
+    arr[1].style.display = 'none';
+    arr[2].style.display = 'none';
+}
+const truncate = (elementBody, row) => {
+    const existingOrderRows = [...elementBody.querySelectorAll(row)].slice(1);
+    existingOrderRows.forEach(row => row.remove());
+}
+const partitioner = (modelStr, pageNum, pageSize) =>
+     JSON.parse(localStorage.getItem(modelStr)).slice((pageNum-1), pageSize);
+
+const rowsCreator = (models, itemToClone,bodyElement, objSpecific,classesList) => {
+    models.forEach(model => {
+        const newRow = itemToClone.cloneNode(true);
+        newRow.querySelector('span').textContent = model.id;
+        newRow.querySelector(classesList[0]).value = model.name;
+        newRow.querySelector(classesList[1]).value = model[objSpecific];
+        newRow.style.display = 'table-row';
+        bodyElement.appendChild(newRow);
+    });
+    const newRow = itemToClone.cloneNode(true);
+    newRow.removeChild(newRow.getElementsByTagName('td')[3]);
+    newRow.querySelector('span').textContent = 'New';
+    newRow.style.display = 'table-row';
+    bodyElement.appendChild(newRow);
+}
+
+export {partitioner, changePage, storeInSession, displayAndHide, truncate, rowsCreator};
