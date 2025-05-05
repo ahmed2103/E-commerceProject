@@ -1,10 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Admin</title>
-    <style>
+    <!-- <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -70,121 +70,120 @@
             display: none;
             margin-top: 30px;
         }
-    </style>
+    </style> -->
+    <link rel="stylesheet" href="style/admin.css" />
     <script type="module" src="../script/admin.js"></script>
-</head>
-<body>
-<h1>hello</h1>
-<select name="manager" id="viewsManager">
-    <option value="admin" disabled>please choose view</option>
-    <option value="user" selected>User</option>
-    <option value="product">Product</option>
-    <option value="order">Order</option>
-</select>
-<div id="userControl">
-    <h2>User</h2>
-    <table id="userTable" border="1">
+  </head>
+  <!-- <body>
+    <h1>hello</h1>
+    <select name="manager" id="viewsManager">
+      <option value="admin" disabled>please choose view</option>
+      <option value="user" selected>User</option>
+      <option value="product">Product</option>
+      <option value="order">Order</option>
+    </select>
+    <div id="userControl">
+      <h2>User</h2>
+      <table id="userTable" border="1">
         <thead>
-        <tr>
+          <tr>
             <th>id</th>
             <th>Username</th>
             <th>Role</th>
             <th>actions</th>
-        </tr>
+          </tr>
         </thead>
         <tbody id="userBody">
-        <tr class="userRow">
+          <tr class="userRow">
             <td><span></span></td>
-            <td><input type="text" class="userName" value=""></td>
+            <td><input type="text" class="userName" value="" /></td>
             <td>
-                <select class="roleMod">
-                    <option value="admin">admin</option>
-                    <option value="customer">customer</option>
-                    <option value="seller">seller</option>
-                </select>
+              <select class="roleMod">
+                <option value="admin">admin</option>
+                <option value="customer">customer</option>
+                <option value="seller">seller</option>
+              </select>
             </td>
             <td>
-                <button class="userUpdate">Update</button>
-                <button class="userDelete">Delete</button>
+              <button class="userUpdate">Update</button>
+              <button class="userDelete">Delete</button>
             </td>
-        </tr>
+          </tr>
         </tbody>
-    </table>
-    <button id="userAdd">Add User</button>
-</div>
-<div id="productControl">
-    <h2>Product</h2>
-    <table border="1" id="productTable">
+      </table>
+      <button id="userAdd">Add User</button>
+    </div>
+    <div id="productControl">
+      <h2>Product</h2>
+      <table border="1" id="productTable">
         <thead>
-        <tr>
+          <tr>
             <th>product ID</th>
             <th>Product Name</th>
             <th>Status</th>
             <th>Actions</th>
-        </tr>
+          </tr>
         </thead>
         <tbody id="productBody">
-        <tr class="productRow">
+          <tr class="productRow">
             <td>
-                <span></span>
+              <span></span>
             </td>
             <td>
-                <input type="text" class="productName" value="">
+              <input type="text" class="productName" value="" />
             </td>
             <td>
-                <select class="statusModification">
-                    <option value="approved">Approve</option>
-                    <option value="rejected">Reject</option>
-                    <option value="pending">Pending</option>
-                </select>
+              <select class="statusModification">
+                <option value="approved">Approve</option>
+                <option value="rejected">Reject</option>
+                <option value="pending">Pending</option>
+              </select>
             </td>
             <td>
-                <button class="productUpdate">Update</button>
-                <button class="productDelete">Delete</button>
+              <button class="productUpdate">Update</button>
+              <button class="productDelete">Delete</button>
             </td>
-        </tr>
+          </tr>
         </tbody>
-    </table>
-</div>
+      </table>
+    </div>
     <div id="orderControl">
-        <h2>Orders</h2>
-        <table border="1" id="orderTable">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>order details</th>
-                <th>Status</th>
-                <th>Order Date</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody id="orderBody">
-            <tr class="orderRow">
-                <td>
-                    <span></span>
-                </td>
-                <td>
-                    <pre></pre>
-                </td>
-                <td>
-                    <select class="orderState">
-                        <option value="confirmed">confirmed</option>
-                        <option value="canceled">canceled</option>
-                        <option value="delivered">delivered</option>
-                    </select>
-                </td>
-                <td class="orderDate">
-
-                </td>
-                <td>
-                    <button class="orderUpdate">Update</button>
-                    <button class="orderDelete">Delete</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-</div>
-<button id="prev">prev</button>
-<button id="next">next</button>
-</body>
+      <h2>Orders</h2>
+      <table border="1" id="orderTable">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>order details</th>
+            <th>Status</th>
+            <th>Order Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="orderBody">
+          <tr class="orderRow">
+            <td>
+              <span></span>
+            </td>
+            <td>
+              <pre></pre>
+            </td>
+            <td>
+              <select class="orderState">
+                <option value="confirmed">confirmed</option>
+                <option value="canceled">canceled</option>
+                <option value="delivered">delivered</option>
+              </select>
+            </td>
+            <td class="orderDate"></td>
+            <td>
+              <button class="orderUpdate">Update</button>
+              <button class="orderDelete">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button id="prev">prev</button>
+    <button id="next">next</button>
+  </body> -->
 </html>
