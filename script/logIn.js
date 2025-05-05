@@ -7,14 +7,13 @@ window.addEventListener('load', () => {
         localStorage.removeItem('users');
 
 
-        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
         fetch('http://localhost:3000/users')
             .then(res => res.json())
             .then(users => {
-                localStorage.setItem('users', JSON.stringify(users));
-                const user = users.find(user => user.name === name);
+                const user = users.find(user => user.email === email);
 
                 if (!user) {
                     alert('User not found');

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <script src="../script/register.js"></script>
+    <style>
+        #password-error,#email-found{
+            display: none;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form action="http://localhost:3000/users/" method="post">
+    <label for="name">Username:</label>
+    <input type="text" id="name" name="name" pattern="[A-Za-z0-9 ]{6,20}"
+           title="user name must contain only letters and numbers" required><br><br>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email"><br><br>
+    <div id="email-found">email already exist</div>>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"
+           pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+           title="Password must be at least 8 characters, include at least one letter and one number.">
+    <br><br>
+    <label for="confirm-password">confirm password</label>
+    <input type="password" id="confirm-password" name="password"
+           pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+           title="Password must be at least 8 characters, include at least one letter and one number.">
+    <div id="password-error">password don't match</div>
+    <label>please choose account type</label>
+    <input type="radio" name="role" id="seller" value="seller">
+    <label for="seller">Seller</label>
+    <input type="radio" name="role" id="customer" checked value="customer">
+    <label for="customer">Customer</label>
+    <input type="submit" value="Submit">
+    <a href="logIn.html">Log In</a>
+</form>
+</body>
+</html>

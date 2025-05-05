@@ -1,107 +1,56 @@
-import { display, hide, truncate, partitioner, rowsCreator, orderRowsCreator, instancesGetter } from "./utils.js";
+import {
+    storeInSession, display, hide, truncate, partitioner, rowsCreator, orderRowsCreator, instancesGetter
+} from "./utils.js";
 
 const pageSize = 5;
 let page = 1;
 window.addEventListener('load', () => {
     const heading1 = document.getElementsByTagName('h1')[0];
     const viewsManager = document.getElementById('viewsManager');
-    const userTable = document.getElementById('userTable');
-    const userControl = document.getElementById('userControl');
-    const userRow = document.getElementsByClassName('userRow')[0];
     const productRow = document.getElementsByClassName('productRow')[0];
     const productTable = document.getElementById('productTable');
     const productControl = document.getElementById('productControl');
-    const userBody = document.getElementById('userBody');
-    const userAdd = document.getElementById('userAdd');
     const productBody = document.getElementById('productBody');
+    const productAdd = document.getElementById('productAdd');
     const orderControl = document.getElementById('orderControl');
     const orderTable = document.getElementById('orderTable');
     const orderBody = document.getElementById('orderBody');
     const orderRow = document.getElementsByClassName('orderRow')[0];
     const prev = document.getElementById('prev');
     const next = document.getElementById('next');
+    const form = document.forms[0];
 
 
-    const admin = JSON.parse(localStorage.getItem('user'));
-    heading1.innerText += ` ${admin.name}`;
+    const seller = JSON.parse(localStorage.getItem('user'));
+    heading1.innerText += ` ${seller.name}`;
 
     viewsManager.addEventListener('change', async () => {
         const viewsManagerValue = viewsManager.value;
         switch (viewsManagerValue) {
-            case 'user':
-                page = 1;
-                display([prev, next, userControl]);
-                hide([productControl, orderControl]);
-                truncate(userBody, '.userRow');
-                const userList = await instancesGetter('users');
-                rowsCreator(partitioner(userList, page, pageSize), userRow, userBody, 'role', ['.userName', '.roleMod']);
-                break;
 
             case 'product':
                 page = 1;
+                hide([orderControl]);
                 display([prev, next, productControl]);
-                hide([userControl, orderControl]);
                 truncate(productBody, '.productRow');
-                const productList = await instancesGetter('products');
+                const productList = (await instancesGetter('products')).filter(product => product.sellerId === seller.id);
+
+                console.log(productList);
                 rowsCreator(partitioner(productList, page, pageSize), productRow, productBody, 'status', ['.productName', '.statusModification']);
                 break;
 
-            default:
+            case 'order':
                 page = 1;
+                hide([productControl]);
                 display([prev, next, orderControl]);
-                hide([productControl, userControl]);
                 truncate(orderBody, '.orderRow');
-                const orderList = await instancesGetter('orders');
+                const orderList = (await instancesGetter('orders'))
+                    .filter(order => order.sellerId === seller.id);
+                console.log(orderList);
                 orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
         }
     });
 
-    userTable.addEventListener('click', async function(event) {
-        const target = event.target;
-        if (target.tagName === 'BUTTON') {
-            if (target.className === 'userUpdate') {
-                const userRow = target.closest('.userRow');
-                const userId = userRow.querySelector('span').textContent;
-                const userName = userRow.querySelector('.userName').value;
-                const userRole = userRow.querySelector('.roleMod').value;
-                const users = await instancesGetter('users');
-                const oldUser = users.find(user => user.id === userId);
-
-                if (!oldUser) {
-                    alert('User not found');
-                    return;
-                }
-
-                const updatedUser = {
-                    ...oldUser,
-                    name: userName,
-                    role: userRole
-                };
-
-                fetch(`http://localhost:3000/users/${userId}`, {
-                    method: 'PUT',
-                    body: JSON.stringify(updatedUser)
-                }).then(response => response.json())
-                    .then(data => alert('User Updated Successfully'))
-                    .catch(err => alert('Error updating user: ' + err));
-            }
-            if (target.className === 'userDelete') {
-                const userRow = target.closest('.userRow');
-                const userId = userRow.querySelector('span').textContent;
-                console.log(userId);
-                fetch(`http://localhost:3000/users/${userId}`, {
-                    method: 'DELETE',
-                }).then(res => {
-                    if (res.ok) {
-                        alert('User Deleted Successfully');
-                        userRow.remove();
-                    } else {
-                        alert('Failed to delete user');
-                    }
-                }).catch(err => alert('Error: ' + err));
-            }
-        }
-    });
 
     productTable.addEventListener('click', async function(event) {
         const target = event.target;
@@ -131,6 +80,8 @@ window.addEventListener('load', () => {
                 }).then(response => response.json())
                     .then(data => alert('Product Updated Successfully'))
                     .catch(err => alert('Error updating product: ' + err));
+
+                await storeInSession('products');
             }
             if (target.className === 'productDelete') {
                 const productRow = target.closest('.productRow');
@@ -138,7 +89,6 @@ window.addEventListener('load', () => {
                 console.log(productId);
                 fetch(`http://localhost:3000/products/${productId}`, {
                     method: 'DELETE',
-
                 }).then(res => {
                     if (res.ok) {
                         alert('Product Deleted Successfully');
@@ -149,10 +99,28 @@ window.addEventListener('load', () => {
                 }).catch(err => alert('Error: ' + err));
             }
         }
+        if (target.className === 'productDetails') {
+            form.reset();
+            form.style.display = 'flex';
+            form.querySelector('h2').innerText = 'Product Details';
+            const productRow = target.closest('.productRow');
+            const productId = productRow.querySelector('span').textContent;
+            const products = await instancesGetter('products');
+            const selectedProduct = products.find(product => product.id === productId);
+            form.querySelector('span').innerText = productId;
+            form.elements['productName'].value = selectedProduct.name;
+            form.elements['productPrice'].value = selectedProduct.price;
+            form.elements['category'].value = selectedProduct.category;
+            form.elements['productDescription'].value = selectedProduct.description;
+            form.querySelector('img').src = selectedProduct.imageData;
+            form.querySelector('span').textContent = productId;
+            if(selectedProduct.imageData) {
+                form.querySelector('img').style.display = 'block';
+            }
+        }
     });
 
     orderTable.addEventListener('click', async function(event) {
-        console.log(event);
         const target = event.target;
         if (target.tagName === 'BUTTON') {
             if (target.className === 'orderUpdate') {
@@ -179,6 +147,8 @@ window.addEventListener('load', () => {
                 }).then(response => response.json())
                     .then(data => alert('Order Updated Successfully'))
                     .catch(err => alert('Error updating order: ' + err));
+
+                await storeInSession('orders');
             }
             if (target.className === 'orderDelete') {
                 const orderRow = target.closest('.orderRow');
@@ -186,7 +156,6 @@ window.addEventListener('load', () => {
                 console.log(orderId);
                 fetch(`http://localhost:3000/orders/${orderId}`, {
                     method: 'DELETE',
-
                 }).then(res => {
                     if (res.ok) {
                         alert('Order Deleted Successfully');
@@ -199,44 +168,119 @@ window.addEventListener('load', () => {
         }
     });
 
-    userAdd.addEventListener('click', async function() {
-        try {
-            const userRows = document.querySelectorAll('.userRow');
-            const lastUserRow = userRows[userRows.length - 1];
-            const userName = lastUserRow.querySelector('.userName').value;
-            const userRole = lastUserRow.querySelector('.roleMod').value;
 
-            const users = await instancesGetter('users');
-            const newId = users.length > 0 ? Number(users[users.length - 1].id) + 1 : 1;
+    productAdd.addEventListener('click', function() {
+        form.querySelector('span').innerText = '';
+        form.querySelector('img').src = ''
+        form.querySelector('img').style.display = 'none';
+        form.querySelector('h2').innerText = 'New Product';
+        form.querySelector('h2').innerText = 'New Product';
+        form.reset();
+        form.style.display = 'flex';
+    });
 
-            if (userName === '' || userRole === '') {
-                alert('Please fill in all fields');
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const id = form.querySelector('span').textContent;
+        const imageUpdte = document.getElementById('imageInput');
+
+        if (id) {
+            let products = await instancesGetter('products');
+            const oldProduct = products.find(product => product.id === id);
+            if (!oldProduct) {
+                alert('Product not found');
+                return;
+            }
+
+            if (imageUpdte.files && imageUpdte.files[0]) {
+                const image = imageUpdte.files[0];
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const imageData = reader.result;
+                    const updatedProduct = {
+                        ...oldProduct,
+                        name: form.elements['productName'].value,
+                        price: form.elements['productPrice'].value,
+                        category: form.elements['category'].value,
+                        status: 'pending',
+                        imageData: imageData,
+                        description: form.elements['productDescription'].value
+                    };
+                    fetch(`http://localhost:3000/products/${id}`, {
+                        method: 'PUT',
+                        body: JSON.stringify(updatedProduct)
+                    })
+                        .then(response => response.json())
+                        .then(data => alert('Product Updated Successfully'))
+                        .catch(err => alert('Error updating product: ' + err));
+                };
+                reader.readAsDataURL(image);
             } else {
-                const newUser = {
+                const updatedProduct = {
+                    ...oldProduct,
+                    name: form.elements['productName'].value,
+                    price: form.elements['productPrice'].value,
+                    category: form.elements['category'].value,
+                    status: 'pending',
+                    description: form.elements['productDescription'].value
+                };
+                fetch(`http://localhost:3000/products/${id}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(updatedProduct)
+                })
+                    .then(response => response.json())
+                    .then(data => alert('Product Updated Successfully'))
+                    .catch(err => alert('Error updating product: ' + err));
+            }
+
+            form.style.display = 'none';
+            return;
+        }
+        const formData = new FormData(form);
+        const imageInput = document.getElementById('imageInput');
+        let products = await instancesGetter('products');
+        const newId = products.length > 0 ? Number(products[products.length - 1].id) + 1 : 1;
+
+        if (imageInput.files && imageInput.files[0]) {
+            const image = imageInput.files[0];
+            const reader = new FileReader();
+            reader.onload = async () => {
+                const imageData = reader.result;
+                const newProduct = {
                     id: newId,
-                    name: userName,
-                    role: userRole
+                    sellerId: seller.id,
+                    name: formData.get('productName'),
+                    price: formData.get('productPrice'),
+                    category: formData.get('category'),
+                    status: 'pending',
+                    imageData: imageData,
+                    description: formData.get('productDescription')
                 };
 
-                fetch(`http://localhost:3000/users`, {
+                fetch(`http://localhost:3000/products`, {
                     method: 'POST',
-                    body: JSON.stringify(newUser)
-                }).then(res => {
-                    if (res.ok) {
-                        alert('User Added Successfully');
-                        lastUserRow.querySelector('.userName').value = '';
-                        lastUserRow.querySelector('.roleMod').value = '';
-
-                        if (viewsManager.value === 'user') {
-                            viewsManager.dispatchEvent(new Event('change'));
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newProduct)
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            alert('Product Added Successfully');
+                            form.reset();
+                            form.style.display = 'none';
+                            if (viewsManager.value === 'product') {
+                                viewsManager.dispatchEvent(new Event('change'));
+                            }
+                        } else {
+                            alert('Failed to add product');
                         }
-                    } else {
-                        alert('Failed to add user');
-                    }
-                }).catch(err => alert('Error: ' + err));
-            }
-        } catch (error) {
-            alert('Error adding user: ' + error);
+                    })
+                    .catch(err => alert('Error: ' + err));
+            };
+            reader.readAsDataURL(image);
+        } else {
+            alert('Please select an image');
         }
     });
 
@@ -245,20 +289,9 @@ window.addEventListener('load', () => {
         page++;
         const viewsManagerValue = viewsManager.value;
         switch (viewsManagerValue) {
-            case 'user':
-                const userList = await instancesGetter('users');
-                const partitionedUserList = partitioner(userList, page, pageSize);
-                if (partitionedUserList.length === 0) {
-                    page--;
-                    alert('No more users');
-                    return;
-                }
-                truncate(document.getElementById('userBody'), '.userRow');
-                rowsCreator(partitionedUserList, userRow, userBody, 'role', ['.userName', '.roleMod']);
-                break;
 
             case 'product':
-                const productList = await instancesGetter('products');
+                const productList = (await instancesGetter('products')).filter(product => product.sellerId === seller.id);
                 const partitionedProductList = partitioner(productList, page, pageSize);
                 if (partitionedProductList.length === 0) {
                     page--;
@@ -270,7 +303,7 @@ window.addEventListener('load', () => {
                 break;
 
             default:
-                const orderList = await instancesGetter('orders');
+                const orderList = (await instancesGetter('orders')).filter(order => order.sellerId === seller.id);
                 const partitionedOrderList = partitioner(orderList, page, pageSize);
                 if (partitionedOrderList.length === 0) {
                     page--;
@@ -278,7 +311,7 @@ window.addEventListener('load', () => {
                     return;
                 }
                 truncate(document.getElementById('orderBody'), '.orderRow');
-                orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
+                orderRowsCreator(partitionedOrderList, orderBody, orderRow);
         }
     });
 
@@ -291,20 +324,15 @@ window.addEventListener('load', () => {
         page--;
         const viewsManagerValue = viewsManager.value;
         switch (viewsManagerValue) {
-            case 'user':
-                const userList = await instancesGetter('users');
-                truncate(document.getElementById('userBody'), '.userRow');
-                rowsCreator(partitioner(userList, page, pageSize), userRow, userBody, 'role', ['.userName', '.roleMod']);
-                break;
 
             case 'product':
-                const productList = await instancesGetter('products');
+                const productList = (await instancesGetter('products')).filter(product => product.sellerId === seller.id);
                 truncate(document.getElementById('productBody'), '.productRow');
                 rowsCreator(partitioner(productList, page, pageSize), productRow, productBody, 'status', ['.productName', '.statusModification']);
                 break;
 
             default:
-                const orderList = await instancesGetter('orders');
+                const orderList = (await instancesGetter('orders')).filter(order => order.sellerId === seller.id);
                 truncate(document.getElementById('orderBody'), '.orderRow');
                 orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
         }
