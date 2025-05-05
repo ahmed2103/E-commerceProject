@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopEase - Your One-Stop Shop</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Header Component -->
+      <header id="main-header">
+        <div class="container">
+          <div class="header-wrapper">
+            <div class="logo">
+              <a href="index.html">
+                <h1>ShopEase</h1>
+              </a>
+            </div>
+            <div class="search-bar">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search for products..."
+              />
+              <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            <nav class="main-nav">
+              <ul>
+                <li>
+                  <a href="#" id="categories-dropdown-toggle"
+                    >Categories <i class="fas fa-chevron-down"></i
+                  ></a>
+                  <div class="dropdown-menu" id="categories-dropdown">
+                    <ul>
+                      <li>
+                        <a href="#" data-category="electronics">Electronics</a>
+                      </li>
+                      <li><a href="#" data-category="clothing">Clothing</a></li>
+                      <li>
+                        <a href="#" data-category="home">Home & Kitchen</a>
+                      </li>
+                      <li><a href="#" data-category="books">Books</a></li>
+                      <li><a href="#" data-category="toys">Toys</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a href="#" id="cart-icon"
+                    ><i class="fas fa-shopping-cart"></i> Cart
+                    <span id="cart-count">0</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#" id="account-dropdown-toggle"
+                    ><i class="fas fa-user"></i> Account
+                    <i class="fas fa-chevron-down"></i
+                  ></a>
+                  <div class="dropdown-menu" id="account-dropdown">
+                    <ul id="account-menu">
+                      <li><a href="#" id="login-link">Login</a></li>
+                      <li><a href="#" id="register-link">Register</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+              <i class="fas fa-bars"></i>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu">
+        <div class="mobile-menu-header">
+          <div class="logo">
+            <h1>ShopEase</h1>
+          </div>
+          <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+        <div class="mobile-search-bar">
+          <input type="text" placeholder="Search for products..." />
+          <button><i class="fas fa-search"></i></button>
+        </div>
+        <nav class="mobile-nav">
+          <ul>
+            <li class="mobile-dropdown">
+              <a href="#" class="mobile-dropdown-toggle"
+                >Categories <i class="fas fa-chevron-down"></i
+              ></a>
+              <ul class="mobile-dropdown-menu">
+                <li><a href="#" data-category="electronics">Electronics</a></li>
+                <li><a href="#" data-category="clothing">Clothing</a></li>
+                <li><a href="#" data-category="home">Home & Kitchen</a></li>
+                <li><a href="#" data-category="books">Books</a></li>
+                <li><a href="#" data-category="toys">Toys</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-shopping-cart"></i> Cart
+                <span class="mobile-cart-count">0</span></a
+              >
+            </li>
+            <li class="mobile-dropdown">
+              <a href="#" class="mobile-dropdown-toggle"
+                ><i class="fas fa-user"></i> Account
+                <i class="fas fa-chevron-down"></i
+              ></a>
+              <ul class="mobile-dropdown-menu">
+                <li><a href="#" id="mobile-login-link">Login</a></li>
+                <li><a href="#" id="mobile-register-link">Register</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Main Content Area -->
+      <main id="main-content">
+        <!-- This will be dynamically populated by JavaScript -->
+      </main>
+
+      <!-- Footer Component -->
+      <footer id="main-footer">
+        <div class="container">
+          <div class="footer-wrapper">
+            <div class="footer-section">
+              <h3>ShopEase</h3>
+              <p>
+                Your one-stop shop for all your needs. We provide quality
+                products at affordable prices.
+              </p>
+            </div>
+            <div class="footer-section">
+              <h3>Quick Links</h3>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h3>Customer Service</h3>
+              <ul>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Shipping Policy</a></li>
+                <li><a href="#">Return Policy</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h3>Connect With Us</h3>
+              <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </div>
+              <p>Subscribe to our newsletter:</p>
+              <div class="newsletter">
+                <input type="email" placeholder="Your email" />
+                <button>Subscribe</button>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; 2025 ShopEase. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Modal Components -->
+      <div class="modal" id="login-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Login</h2>
+            <span class="close-modal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <form id="login-form">
+              <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required />
+              </div>
+              <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required />
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
+              <div class="form-footer">
+                <p>
+                  Don't have an account?
+                  <a href="#" id="switch-to-register">Register</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="register-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Register</h2>
+            <span class="close-modal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <form id="register-form">
+              <div class="form-group">
+                <label for="register-name">Full Name</label>
+                <input type="text" id="register-name" required />
+              </div>
+              <div class="form-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" required />
+              </div>
+              <div class="form-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" required />
+              </div>
+              <div class="form-group">
+                <label for="register-confirm-password">Confirm Password</label>
+                <input
+                  type="password"
+                  id="register-confirm-password"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="register-role">Register as:</label>
+                <select id="register-role" required>
+                  <option value="customer">Customer</option>
+                  <option value="seller">Seller</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Register</button>
+              </div>
+              <div class="form-footer">
+                <p>
+                  Already have an account?
+                  <a href="#" id="switch-to-login">Login</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="cart-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Your Cart</h2>
+            <span class="close-modal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <div id="cart-items">
+              <!-- Cart items will be dynamically added here -->
+            </div>
+            <div class="cart-summary">
+              <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+              </div>
+              <div class="cart-actions">
+                <button class="btn btn-secondary" id="clear-cart">
+                  Clear Cart
+                </button>
+                <button class="btn btn-primary" id="checkout-btn">
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="product-modal">
+        <div class="modal-content product-modal-content">
+          <div class="modal-header">
+            <h2 id="product-modal-title">Product Title</h2>
+            <span class="close-modal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <div class="product-modal-details">
+              <div class="product-modal-image">
+                <img id="product-modal-img" src="" alt="Product Image" />
+              </div>
+              <div class="product-modal-info">
+                <p id="product-modal-description">
+                  Product description will go here.
+                </p>
+                <div class="product-modal-price">
+                  <span>Price: </span>
+                  <span id="product-modal-price">$0.00</span>
+                </div>
+                <div class="product-modal-rating">
+                  <span>Rating: </span>
+                  <span id="product-modal-rating">0</span>
+                  <div id="product-modal-stars" class="stars"></div>
+                </div>
+                <div class="product-modal-quantity">
+                  <label for="product-modal-qty">Quantity:</label>
+                  <div class="quantity-control">
+                    <button id="decrease-qty">-</button>
+                    <input
+                      type="number"
+                      id="product-modal-qty"
+                      value="1"
+                      min="1"
+                    />
+                    <button id="increase-qty">+</button>
+                  </div>
+                </div>
+                <button class="btn btn-primary" id="add-to-cart-btn">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast Notification -->
+      <div id="toast-notification" class="toast-notification">
+        <div class="toast-content">
+          <i class="fas fa-check-circle toast-icon success"></i>
+          <div class="toast-message">Item added to cart successfully!</div>
+        </div>
+        <div class="toast-progress"></div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils/storage.js"></script>
+    <script src="js/utils/api.js"></script>
+    <script src="js/utils/helpers.js"></script>
+    <script src="js/components/header.js"></script>
+    <script src="js/components/footer.js"></script>
+    <script src="js/components/product.js"></script>
+    <script src="js/components/cart.js"></script>
+    <script src="js/components/modal.js"></script>
+    <script src="js/components/toast.js"></script>
+    <script src="js/pages/home.js"></script>
+    <script src="js/pages/product-list.js"></script>
+    <script src="js/pages/product-detail.js"></script>
+    <script src="js/pages/cart.js"></script>
+    <script src="js/pages/checkout.js"></script>
+    <script src="js/pages/account.js"></script>
+    <script src="js/pages/admin.js"></script>
+    <script src="js/pages/seller.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

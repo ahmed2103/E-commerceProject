@@ -1,0 +1,341 @@
+/* Responsive Styles */
+
+/* Large Devices (Desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  .categories-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .brands-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .testimonial-card {
+    flex: 0 0 calc(50% - 20px);
+  }
+
+  .footer-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .checkout,
+  .account,
+  .dashboard {
+    grid-template-columns: 200px 1fr;
+  }
+
+  .account-addresses,
+  .account-wishlist {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analytics-charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Medium Devices (Tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  .header-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .search-bar {
+    order: 3;
+    width: 100%;
+    margin: 10px 0 0;
+    max-width: 100%;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .hero-content {
+    max-width: 400px;
+    margin-left: 20px;
+  }
+
+  .hero-content h2 {
+    font-size: 24px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .deals-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .brands-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .testimonial-card {
+    flex: 0 0 calc(100% - 20px);
+  }
+
+  .product-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-summary {
+    position: static;
+  }
+
+  .account,
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .account-sidebar,
+  .dashboard-sidebar {
+    margin-bottom: 20px;
+  }
+
+  .account-wishlist {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small Devices (Landscape Phones, less than 768px) */
+@media (max-width: 767.98px) {
+  .hero-slider {
+    height: 300px;
+  }
+
+  .hero-content {
+    max-width: 300px;
+    padding: 15px;
+  }
+
+  .hero-content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .products-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .products-filter {
+    margin-top: 10px;
+  }
+
+  .brands-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+
+  .product-modal-details {
+    flex-direction: column;
+  }
+
+  .product-modal-image {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .product-specifications {
+    grid-template-columns: 1fr;
+  }
+
+  .product-reviews-summary {
+    flex-direction: column;
+  }
+
+  .product-rating-average {
+    padding-right: 0;
+    border-right: none;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .account-info {
+    grid-template-columns: 1fr;
+  }
+
+  .account-addresses {
+    grid-template-columns: 1fr;
+  }
+
+  .account-wishlist {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-table {
+    overflow-x: auto;
+  }
+
+  .dashboard-table table {
+    min-width: 600px;
+  }
+}
+
+/* Extra Small Devices (Portrait Phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .header-wrapper {
+    padding: 10px 0;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+  }
+
+  .hero-slider {
+    height: 250px;
+  }
+
+  .hero-content {
+    max-width: 250px;
+    margin-left: 10px;
+  }
+
+  .hero-content h2 {
+    font-size: 18px;
+  }
+
+  .hero-content .btn {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brands-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-form input {
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .newsletter-form button {
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  .modal-content {
+    margin: 20px auto;
+  }
+
+  .product-tabs-header {
+    flex-wrap: wrap;
+  }
+
+  .product-tab {
+    padding: 10px 15px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .checkout-item {
+    flex-direction: column;
+  }
+
+  .checkout-item-img {
+    margin-bottom: 10px;
+  }
+
+  .account-order-header {
+    flex-direction: column;
+  }
+
+  .account-order-date {
+    margin-top: 5px;
+  }
+
+  .account-order-item {
+    flex-direction: column;
+  }
+
+  .account-order-item-img {
+    margin-bottom: 10px;
+  }
+
+  .account-order-actions {
+    flex-direction: column;
+  }
+
+  .account-order-actions button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .error-code {
+    font-size: 80px;
+  }
+
+  .error-message {
+    font-size: 18px;
+  }
+
+  .error-actions .btn {
+    display: block;
+    margin: 10px auto;
+  }
+}
