@@ -54,4 +54,25 @@ const orderRowsCreator = (orderList, orderBody,rowForClone) => {
     });
 }
 
-export {partitioner, instancesGetter, storeInSession, display, truncate, rowsCreator, orderRowsCreator, hide};
+const productCardCreator = (productList, productCard, productGrid, productModal) => {
+    for (let product of productList) {
+        const newProductCard = productCard.cloneNode(true);
+
+        newProductCard.setAttribute('id', product.id);
+        newProductCard.querySelector('.product-title').textContent = product.name;
+        newProductCard.querySelector('.current-price').textContent = product.price;
+        newProductCard.querySelector('img').src = product.imageData;
+        newProductCard.querySelector('img').alt = product.name;
+        newProductCard.style.display = 'block';
+        newProductCard.addEventListener('click', () => {
+            productModal.style.display = 'block';
+            productModal.querySelector('#product-modal-title').textContent = product.name;
+            productModal.querySelector('#product-modal-price').textContent = product.price;
+            productModal.querySelector('#product-modal-description').textContent = product.description;
+            productModal.querySelector('#product-modal-img').src = product.imageData;
+        })
+        productGrid.appendChild(newProductCard);
+    }
+}
+
+export {partitioner, instancesGetter, storeInSession, display, truncate, rowsCreator, orderRowsCreator, hide, productCardCreator};
