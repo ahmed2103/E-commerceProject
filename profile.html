@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="account">
+      <!-- Sidebar -->
+      <div class="account-sidebar">
+        <div class="account-user">
+          <div class="account-avatar">
+            <img src="avatar.jpg" alt="User Avatar" />
+          </div>
+          <div class="account-username">John Doe</div>
+          <div class="account-email">john@example.com</div>
+        </div>
+
+        <nav class="account-nav">
+          <ul>
+            <li>
+              <a href="#" class="active"><i class="icon-user"></i> Profile</a>
+            </li>
+            <li>
+              <a href="#"><i class="icon-map"></i> Addresses</a>
+            </li>
+            <li>
+              <a href="#"><i class="icon-box"></i> Orders</a>
+            </li>
+            <li>
+              <a href="#"><i class="icon-heart"></i> Wishlist</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Content -->
+      <div class="account-content">
+        <div class="container">
+          <!-- Section: Profile Info -->
+          <div class="account-section">
+            <div class="account-section-title">
+              <span>Profile Information</span>
+              <button>Edit</button>
+            </div>
+            <div class="account-info">
+              <div class="account-info-item">
+                <div class="account-info-label">Name</div>
+                <div class="account-info-value">John Doe</div>
+              </div>
+              <div class="account-info-item">
+                <div class="account-info-label">Email</div>
+                <div class="account-info-value">john@example.com</div>
+              </div>
+            </div>
+          </div>
+          <!-- Section: Orders -->
+          <div class="account-section account-orders">
+            <div class="account-section-title">Orders</div>
+            <div class="account-order">
+              <div class="account-order-header">
+                <div>
+                  <div class="account-order-id">Order #1234</div>
+                  <div class="account-order-date">April 1, 2025</div>
+                </div>
+                <div class="account-order-status status-processing">
+                  Processing
+                </div>
+              </div>
+
+              <div class="account-order-items">
+                <div class="account-order-item">
+                  <div class="account-order-item-img">
+                    <img src="product.jpg" alt="Product" />
+                  </div>
+                  <div class="account-order-item-info">
+                    <div class="account-order-item-title">Product Name</div>
+                    <div class="account-order-item-price">
+                      <span>Qty: 1</span>
+                      <span>$50.00</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Repeat product items -->
+              </div>
+
+              <div class="account-order-total">
+                <span>Total</span>
+                <span>$50.00</span>
+              </div>
+
+              <div class="account-order-actions">
+                <button>View</button>
+                <button>Reorder</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

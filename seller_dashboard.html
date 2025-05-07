@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="seller-products">
+        <!-- Product Form -->
+        <div class="seller-product-form">
+          <div class="seller-product-form-title">Add New Product</div>
+      
+          <!-- Images Upload -->
+          <div class="seller-product-images">
+            <div class="image-upload-container">
+              <div class="image-upload">
+                <i class="fas fa-upload"></i>
+                <span>Upload</span>
+              </div>
+              <div class="image-preview">
+                <img src="image.jpg" alt="Preview" />
+                <div class="image-preview-remove"><i class="fas fa-times"></i></div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Variants -->
+          <div class="seller-product-variants">
+            <div class="variant-row">
+              <div class="form-group">
+                <label>Size</label>
+                <input type="text" />
+              </div>
+              <div class="form-group">
+                <label>Color</label>
+                <input type="text" />
+              </div>
+              <div class="form-group">
+                <label>Stock</label>
+                <input type="number" />
+              </div>
+              <button><i class="fas fa-trash"></i></button>
+            </div>
+            <button class="add-variant"><i class="fas fa-plus"></i> Add Variant</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Seller Orders -->
+      <div class="seller-orders">
+        <div class="seller-order-status">
+          <select>
+            <option>Pending</option>
+            <option>Processing</option>
+            <option>Shipped</option>
+            <option>Delivered</option>
+          </select>
+          <button>Update Status</button>
+        </div>
+      </div>
+      
+      <!-- Seller Analytics -->
+      <div class="seller-analytics">
+        <!-- Charts -->
+        <div class="analytics-charts">
+          <div class="analytics-chart">
+            <div class="analytics-chart-title">Sales Overview</div>
+            <div class="analytics-chart-container" id="chart1">
+              <!-- Chart JS or library can go here -->
+            </div>
+          </div>
+          <div class="analytics-chart">
+            <div class="analytics-chart-title">Revenue Breakdown</div>
+            <div class="analytics-chart-container" id="chart2">
+              <!-- Chart JS or library can go here -->
+            </div>
+          </div>
+        </div>
+      
+        <!-- Table -->
+        <div class="analytics-table">
+          <div class="analytics-table-title">Recent Transactions</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#1001</td>
+                <td>2025-05-01</td>
+                <td>$120.00</td>
+                <td>Delivered</td>
+              </tr>
+              <tr>
+                <td>#1002</td>
+                <td>2025-05-02</td>
+                <td>$80.00</td>
+                <td>Shipped</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>      
+</body>
+</html>

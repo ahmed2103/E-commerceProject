@@ -10,14 +10,6 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .brands-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  .testimonial-card {
-    flex: 0 0 calc(50% - 20px);
-  }
-
   .footer-wrapper {
     grid-template-columns: repeat(2, 1fr);
   }
