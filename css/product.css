@@ -1,0 +1,110 @@
+section.product {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 300px;
+  gap: 10px;
+  padding: 20px 0;
+  margin-bottom: 30px;
+}
+.product-img {
+  display: flex;
+  height: calc(100vh - 20px);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.product-img img {
+  object-fit: contain;
+}
+.product-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+.product-btn input {
+  width: 50px;
+  height: 100%;
+  padding: 0px;
+  border-radius: 5px;
+  text-align: center;
+}
+.product-btn button {
+  flex: 1;
+  padding: 10px 20px;
+}
+.product-seller-content {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.product-seller img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+.product-reviews {
+  padding: 30px;
+}
+.product-reviews-title {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.product-reviews-list {
+  margin-bottom: 10px;
+}
+.product-reviews-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 10px;
+  padding: 20px 0;
+  margin-bottom: 10px;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.product-review-user {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+}
+.product-review-user img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+.product-review-user p {
+  font-weight: 600;
+  font-size: 14px;
+}
+.product-review-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 10px;
+}
+.product-review {
+  font-size: 16px;
+}
+.product-add-review {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+}
+.product-add-review {
+  position: relative;
+}
+.product-add-review button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  padding: 5px 10px;
+}
