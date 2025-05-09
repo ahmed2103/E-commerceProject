@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="360e6571-0551-4c63-83f7-63fe6180544b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/E-commerceProject.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json-server" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/json-server" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json-server.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json-server.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json5" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json5.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json5.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/mime" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mime.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mime.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/dayjs/plugin/arraySupport.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/dayjs/plugin/arraySupport.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/dayjs/plugin/objectSupport.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/dayjs/plugin/objectSupport.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json-server/lib/bin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-server/lib/bin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/json5/lib/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json5/lib/cli.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mime/bin/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/bin/cli.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mime/src/mime_cli.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/src/mime_cli.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/logIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/logIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seller_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/seller_dashboard.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2wLMvbK6GgR77U1GuPbMBVkBD3e" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.account.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.admin.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.admin_dashboard.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.admin_dashboard.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.logI.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.logIn.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.login.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.login.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.profile.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.register.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.register.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.seller_dashboard.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.seller_dashboard.html.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.logIn.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/hasona/ITI_tasks/E-commerceProject/script&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/hasona/.local/share/JetBrains/Toolbox/apps/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/script" />
+      <recent name="$PROJECT_DIR$/static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/script" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.seller_dashboard.html (1)">
+    <configuration name="admin_dashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/admin_dashboard.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/login.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="profile.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/profile.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="register.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/register.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="seller_dashboard.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/seller_dashboard.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.seller_dashboard.html (1)" />
+        <item itemvalue="JavaScript Debug.login.html" />
+        <item itemvalue="JavaScript Debug.admin_dashboard.html" />
+        <item itemvalue="JavaScript Debug.profile.html" />
+        <item itemvalue="JavaScript Debug.register.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-WS-251.23774.424" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="360e6571-0551-4c63-83f7-63fe6180544b" name="Changes" comment="" />
+      <created>1745816631909</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745816631909</updated>
+      <workItem from="1745816633326" duration="6105000" />
+      <workItem from="1745824628647" duration="3303000" />
+      <workItem from="1745860885752" duration="1433000" />
+      <workItem from="1745899211660" duration="15557000" />
+      <workItem from="1745948210871" duration="9977000" />
+      <workItem from="1745986352887" duration="10534000" />
+      <workItem from="1746030366468" duration="763000" />
+      <workItem from="1746032612102" duration="8876000" />
+      <workItem from="1746174190191" duration="185000" />
+      <workItem from="1746282072182" duration="17701000" />
+      <workItem from="1746326095418" duration="18267000" />
+      <workItem from="1746374310733" duration="6513000" />
+      <workItem from="1746431594649" duration="1916000" />
+      <workItem from="1746461541609" duration="9820000" />
+      <workItem from="1746519683300" duration="269000" />
+      <workItem from="1746537789182" duration="10791000" />
+      <workItem from="1746607389329" duration="4000" />
+      <workItem from="1746607517315" duration="967000" />
+      <workItem from="1746610328818" duration="9616000" />
+      <workItem from="1746620789017" duration="13310000" />
+      <workItem from="1746688985423" duration="26223000" />
+      <workItem from="1746778213362" duration="21104000" />
+      <workItem from="1746806090017" duration="3710000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
