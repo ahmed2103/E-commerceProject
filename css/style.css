@@ -440,7 +440,6 @@ ul {
 }
 
 .product-card {
-  display: none;
   background-color: var(--white);
   border-radius: 8px;
   overflow: hidden;
@@ -845,7 +844,7 @@ ul {
 }
 
 .cart-item {
-  display: none;
+  display: flex;
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid var(--border-color);
@@ -2164,8 +2163,9 @@ table tr:hover {
 .error-actions .btn {
   margin: 0 10px;
 }
+
 #email-found,#password-error{
-  display: none;
+    display: none;
     color: red;
     font-size: 14px;
     margin-top: 10px;
@@ -2174,5 +2174,5 @@ table tr:hover {
     display: none;
 }
 #prev,#next{
-  display: none;
+    display: none;
 }

@@ -130,11 +130,6 @@
       "id": "21",
       "name": "Ahmed",
       "role": "customer"
-    },
-    {
-      "id": 22,
-      "name": "Ahmed Fathi",
-      "role": "admin"
     }
   ],
   "products": [
