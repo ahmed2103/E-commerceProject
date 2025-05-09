@@ -1,12 +1,19 @@
 import {
-    storeInSession, display, hide, truncate, partitioner, rowsCreator, orderRowsCreator, instancesGetter
+    display, hide, truncate, partitioner, orderRowsCreator, productRowsCreator, instancesGetter, confirmUpdate, confirmDelete
 } from "./utils.js";
 
 const pageSize = 5;
 let page = 1;
-window.addEventListener('load', () => {
-    const heading1 = document.getElementsByTagName('h1')[0];
-    const viewsManager = document.getElementById('viewsManager');
+let currentView;
+
+window.addEventListener('load', async () => {
+    // DOM Elements
+    const dashAncor = document.getElementById('dashboardAnchor');
+    const userName = document.querySelector('.dashboard-username');
+    const productAnchor = document.getElementById('productAnchor');
+    const orderAnchor = document.getElementById('orderAnchor');
+    const lastOrdersTable = document.getElementById('lastOrdersTable');
+    const lastOrdersBody = document.getElementById('lastOrdersBody');
     const productRow = document.getElementsByClassName('productRow')[0];
     const productTable = document.getElementById('productTable');
     const productControl = document.getElementById('productControl');
@@ -14,128 +21,141 @@ window.addEventListener('load', () => {
     const productAdd = document.getElementById('productAdd');
     const orderControl = document.getElementById('orderControl');
     const orderTable = document.getElementById('orderTable');
-    const orderBody = document.getElementById('orderBody');
+    const orderBody = document.getElementById('ordersBody');
     const orderRow = document.getElementsByClassName('orderRow')[0];
     const prev = document.getElementById('prev');
     const next = document.getElementById('next');
-    const form = document.forms[0];
+    const deleteModal = document.getElementById('deleteModal');
+    const updateModal = document.getElementById('updateModal');
+    const form = document.querySelector('.seller-form');
 
-
+    // Get seller from localStorage
     const seller = JSON.parse(localStorage.getItem('user'));
-    heading1.innerText += ` ${seller.name}`;
+    userName.innerText = `${seller.name}`;
 
-    viewsManager.addEventListener('change', async () => {
-        const viewsManagerValue = viewsManager.value;
-        switch (viewsManagerValue) {
+    // Initialize Dashboard
+    dashAncor.addEventListener('click', async () => {
+        currentView = 'dashboard';
+        document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+        document.getElementById('dashboard-view').classList.add('active');
 
-            case 'product':
-                page = 1;
-                hide([orderControl]);
-                display([prev, next, productControl]);
-                truncate(productBody, '.productRow');
-                const productList = (await instancesGetter('products')).filter(product => product.sellerId === seller.id);
+        // Update stats
+        document.getElementById('oCount').textContent = (await instancesGetter('orders')).filter(order => order.sellerId === seller.id).length;
+        document.getElementById('pCount').textContent = (await instancesGetter('products')).filter(product => product.sellerId === seller.id).length;
+        document.getElementById('cCount').textContent = (await instancesGetter('users')).filter(user => user.role === 'customer').length;
 
-                console.log(productList);
-                rowsCreator(partitioner(productList, page, pageSize), productRow, productBody, 'status', ['.productName', '.statusModification']);
-                break;
+        // Show recent orders
+        truncate(lastOrdersBody, '.orderRow');
+        const lastOrders = (await instancesGetter('orders'))
+            .filter(order => order.sellerId === seller.id)
+            .slice(-5).reverse();
+        await orderRowsCreator(lastOrders, lastOrdersBody, orderRow);
 
-            case 'order':
-                page = 1;
-                hide([productControl]);
-                display([prev, next, orderControl]);
-                truncate(orderBody, '.orderRow');
-                const orderList = (await instancesGetter('orders'))
-                    .filter(order => order.sellerId === seller.id);
-                console.log(orderList);
-                orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
-        }
+        hide([prev, next]);
     });
 
+    // Products View
+    productAnchor.addEventListener('click', async () => {
+        currentView = 'products';
+        document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+        document.getElementById('products-view').classList.add('active');
 
+        page = 1;
+        display([prev, next]);
+        truncate(productBody, '.productRow');
+
+        const productList = (await instancesGetter('products')).filter(product => product.sellerId === seller.id);
+        productRowsCreator(partitioner(productList, page, pageSize), productRow, productBody, 'status', ['.productName', '.statusModification']);
+    });
+
+    // Orders View
+    orderAnchor.addEventListener('click', async () => {
+        currentView = 'orders';
+        document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+        document.getElementById('orders-view').classList.add('active');
+
+        page = 1;
+        truncate(orderBody, '.orderRow');
+
+        const orderList = (await instancesGetter('orders')).filter(order => order.sellerId === seller.id);
+        const partition = partitioner(orderList, page, pageSize);
+        await orderRowsCreator(partition, orderBody, orderRow);
+
+        display([prev, next]);
+    });
+
+    // Initialize dashboard on load
+    dashAncor.click();
+
+    // Product Table Event Listener
     productTable.addEventListener('click', async function(event) {
         const target = event.target;
-        if (target.tagName === 'BUTTON') {
-            if (target.className === 'productUpdate') {
-                const productRow = target.closest('.productRow');
-                const productId = productRow.querySelector('span').textContent;
-                const productName = productRow.querySelector('.productName').value;
-                const productStatus = productRow.querySelector('.statusModification').value;
-                const products = await instancesGetter('products');
-                const oldProduct = products.find(product => product.id === productId);
 
-                if (!oldProduct) {
-                    alert('Product not found');
-                    return;
-                }
 
-                const updatedProduct = {
-                    ...oldProduct,
-                    name: productName,
-                    status: productStatus
-                };
 
-                fetch(`http://localhost:3000/products/${productId}`, {
-                    method: 'PUT',
-                    body: JSON.stringify(updatedProduct)
-                }).then(response => response.json())
-                    .then(data => alert('Product Updated Successfully'))
-                    .catch(err => alert('Error updating product: ' + err));
+        if (target.classList.contains('productDelete')) {
+            const productRow = target.closest('.productRow');
+            const productId = productRow.getAttribute('id');
 
-                await storeInSession('products');
-            }
-            if (target.className === 'productDelete') {
-                const productRow = target.closest('.productRow');
-                const productId = productRow.querySelector('span').textContent;
-                console.log(productId);
+            if (await confirmDelete()) {
                 fetch(`http://localhost:3000/products/${productId}`, {
                     method: 'DELETE',
-                }).then(res => {
-                    if (res.ok) {
-                        alert('Product Deleted Successfully');
-                        productRow.remove();
-                    } else {
-                        alert('Failed to delete product');
-                    }
-                }).catch(err => alert('Error: ' + err));
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            productRow.remove();
+                        } else {
+                            alert('Failed to delete product');
+                        }
+                    })
+                    .catch(err => alert('Error: ' + err));
             }
         }
-        if (target.className === 'productDetails') {
-            form.reset();
-            form.style.display = 'flex';
-            form.querySelector('h2').innerText = 'Product Details';
+
+        if (target.classList.contains('productUpdate')) {
+            // Open product details form
+            const modal = document.querySelector('#formModal');
+            const modalTitle = modal.querySelector('.modal-header h2');
+            modalTitle.textContent = 'Product Details';
+
             const productRow = target.closest('.productRow');
-            const productId = productRow.querySelector('span').textContent;
+            const productId = productRow.getAttribute('id');
             const products = await instancesGetter('products');
             const selectedProduct = products.find(product => product.id === productId);
-            form.querySelector('span').innerText = productId;
-            form.elements['productName'].value = selectedProduct.name;
-            form.elements['productPrice'].value = selectedProduct.price;
-            form.elements['category'].value = selectedProduct.category;
-            form.elements['productDescription'].value = selectedProduct.description;
-            form.querySelector('img').src = selectedProduct.imageData;
-            form.querySelector('span').textContent = productId;
-            if(selectedProduct.imageData) {
-                form.querySelector('img').style.display = 'block';
+
+            if (selectedProduct) {
+                document.getElementById('name').value = selectedProduct.name;
+                document.getElementById('price').value = selectedProduct.price;
+                document.getElementById('category').value = selectedProduct.category;
+                document.getElementById('description').value = selectedProduct.description;
+
+                // Set a hidden field or data attribute to store product ID
+                const btnAction = document.getElementById('success');
+                btnAction.textContent = 'Update';
+                btnAction.dataset.productId = productId;
+
+                // Display modal
+                modal.style.display = 'block';
             }
         }
     });
 
+    // Order Table Event Listener
     orderTable.addEventListener('click', async function(event) {
         const target = event.target;
-        if (target.tagName === 'BUTTON') {
-            if (target.className === 'orderUpdate') {
-                console.log(event);
-                const orderRow = target.closest('.orderRow');
-                const orderId = orderRow.querySelector('span').textContent;
-                const orderState = orderRow.querySelector('.orderState').value;
-                const orders = await instancesGetter('orders');
-                const oldOrder = orders.find(order => order.id === orderId);
 
-                if (!oldOrder) {
-                    alert('Order not found');
-                    return;
-                }
+        if (target.classList.contains('orderUpdate')) {
+            const orderRow = target.closest('.orderRow');
+            const orderId = orderRow.getAttribute('id');
+            const orderState = orderRow.querySelector('.orderState').value;
+            const orders = await instancesGetter('orders');
+            const oldOrder = orders.find(order => order.id === orderId);
 
+            if (!oldOrder) {
+                return;
+            }
+
+            if (await confirmUpdate()) {
                 const updatedOrder = {
                     ...oldOrder,
                     status: orderState
@@ -144,171 +164,294 @@ window.addEventListener('load', () => {
                 fetch(`http://localhost:3000/orders/${orderId}`, {
                     method: 'PUT',
                     body: JSON.stringify(updatedOrder)
-                }).then(response => response.json())
-                    .then(data => alert('Order Updated Successfully'))
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                        throw new Error('Failed to update order');
+                    })
                     .catch(err => alert('Error updating order: ' + err));
-
-                await storeInSession('orders');
             }
-            if (target.className === 'orderDelete') {
-                const orderRow = target.closest('.orderRow');
-                const orderId = orderRow.querySelector('span').textContent;
-                console.log(orderId);
+        }
+
+        if (target.classList.contains('orderDelete')) {
+            const orderRow = target.closest('.orderRow');
+            const orderId = orderRow.getAttribute('id');
+
+            if (await confirmDelete()) {
                 fetch(`http://localhost:3000/orders/${orderId}`, {
                     method: 'DELETE',
-                }).then(res => {
-                    if (res.ok) {
-                        alert('Order Deleted Successfully');
-                        orderRow.remove();
-                    } else {
-                        alert('Failed to delete order');
-                    }
-                }).catch(err => alert('Error: ' + err));
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            orderRow.remove();
+                        } else {
+                            alert('Failed to delete order');
+                        }
+                    })
+                    .catch(err => alert('Error: ' + err));
             }
         }
     });
 
+    // Recent Orders Table Event Listener (same functionality as order table)
+    lastOrdersTable.addEventListener('click', async function(event) {
+        const target = event.target;
 
-    productAdd.addEventListener('click', function() {
-        form.querySelector('span').innerText = '';
-        form.querySelector('img').src = ''
-        form.querySelector('img').style.display = 'none';
-        form.querySelector('h2').innerText = 'New Product';
-        form.querySelector('h2').innerText = 'New Product';
-        form.reset();
-        form.style.display = 'flex';
+        if (target.classList.contains('orderUpdate')) {
+            const orderRow = target.closest('.orderRow');
+            const orderId = orderRow.getAttribute('id');
+            const orderState = orderRow.querySelector('.orderState').value;
+            const orders = await instancesGetter('orders');
+            const oldOrder = orders.find(order => order.id === orderId);
+
+            if (!oldOrder) {
+                return;
+            }
+
+            if (await confirmUpdate()) {
+                const updatedOrder = {
+                    ...oldOrder,
+                    status: orderState
+                };
+
+                fetch(`http://localhost:3000/orders/${orderId}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(updatedOrder)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                        throw new Error('Failed to update order');
+                    })
+                    .catch(err => alert('Error updating order: ' + err));
+            }
+        }
+
+        if (target.classList.contains('orderDelete')) {
+            const orderRow = target.closest('.orderRow');
+            const orderId = orderRow.getAttribute('id');
+
+            if (await confirmDelete()) {
+                fetch(`http://localhost:3000/orders/${orderId}`, {
+                    method: 'DELETE',
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            orderRow.remove();
+                        } else {
+                            alert('Failed to delete order');
+                        }
+                    })
+                    .catch(err => alert('Error: ' + err));
+            }
+        }
     });
 
+    // Product Add Button
+    // Product Add Button
+    productAdd.addEventListener('click', function() {
+        // Open empty form for adding product
+        const modal = document.querySelector('#formModal');
+        const modalTitle = modal.querySelector('.modal-header h2');
+        modalTitle.textContent = 'Add New Product';
+
+        // Clear form
+        document.getElementById('name').value = '';
+        document.getElementById('price').value = '';
+        document.getElementById('category').value = '0';
+        document.getElementById('description').value = '';
+        document.getElementById('image').value = '';
+
+        // Set button text
+        const btnAction = document.getElementById('success');
+        btnAction.textContent = 'Add';
+        btnAction.dataset.productId = '';
+
+        // Display modal
+        modal.style.display = 'block';
+    });
+
+// Form submit handler for productForm
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
-        const id = form.querySelector('span').textContent;
-        const imageUpdte = document.getElementById('imageInput');
 
-        if (id) {
-            let products = await instancesGetter('products');
-            const oldProduct = products.find(product => product.id === id);
+        const btnAction = document.getElementById('success');
+        const productId = btnAction.dataset.productId;
+        const modal = document.querySelector('#formModal');
+
+        // Get form data
+        const name = document.getElementById('name').value;
+        const price = document.getElementById('price').value;
+        const category = document.getElementById('category').value;
+        const description = document.getElementById('description').value;
+        const imageInput = document.getElementById('image');
+
+        if (name === '' || price === '' || category === '0') {
+            alert('Please fill in all required fields');
+            return;
+        }
+
+        // Function to handle image data
+        const getImageData = () => {
+            return new Promise((resolve) => {
+                if (imageInput.files && imageInput.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        resolve(e.target.result);
+                    };
+                    reader.readAsDataURL(imageInput.files[0]);
+                } else {
+                    resolve(null);
+                }
+            });
+        };
+
+        // Update existing product
+        if (productId) {
+            const products = await instancesGetter('products');
+            const oldProduct = products.find(product => product.id === productId);
+
             if (!oldProduct) {
                 alert('Product not found');
                 return;
             }
 
-            if (imageUpdte.files && imageUpdte.files[0]) {
-                const image = imageUpdte.files[0];
-                const reader = new FileReader();
-                reader.onload = async () => {
-                    const imageData = reader.result;
-                    const updatedProduct = {
-                        ...oldProduct,
-                        name: form.elements['productName'].value,
-                        price: form.elements['productPrice'].value,
-                        category: form.elements['category'].value,
-                        status: 'pending',
-                        imageData: imageData,
-                        description: form.elements['productDescription'].value
-                    };
-                    fetch(`http://localhost:3000/products/${id}`, {
-                        method: 'PUT',
-                        body: JSON.stringify(updatedProduct)
-                    })
-                        .then(response => response.json())
-                        .then(data => alert('Product Updated Successfully'))
-                        .catch(err => alert('Error updating product: ' + err));
-                };
-                reader.readAsDataURL(image);
-            } else {
-                const updatedProduct = {
-                    ...oldProduct,
-                    name: form.elements['productName'].value,
-                    price: form.elements['productPrice'].value,
-                    category: form.elements['category'].value,
-                    status: 'pending',
-                    description: form.elements['productDescription'].value
-                };
-                fetch(`http://localhost:3000/products/${id}`, {
-                    method: 'PUT',
-                    body: JSON.stringify(updatedProduct)
+            const imageData = await getImageData();
+
+            const updatedProduct = {
+                ...oldProduct,
+                name: name,
+                price: price,
+                category: category,
+                description: description,
+                status: 'pending',
+                ...(imageData && { imageData })
+            };
+
+            fetch(`http://localhost:3000/products/${productId}`, {
+                method: 'PUT',
+                body: JSON.stringify(updatedProduct)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        modal.style.display = 'none';
+
+                        // Refresh product view if active
+                        if (currentView === 'products') {
+                            productAnchor.click();
+                        }
+                    } else {
+                        throw new Error('Failed to update product');
+                    }
                 })
-                    .then(response => response.json())
-                    .then(data => alert('Product Updated Successfully'))
-                    .catch(err => alert('Error updating product: ' + err));
+                .catch(err => alert('Error: ' + err));
+        }
+        // Add new product
+        else {
+            if (!imageInput.files || !imageInput.files[0]) {
+                alert('Please select an image');
+                return;
             }
 
-            form.style.display = 'none';
-            return;
-        }
-        const formData = new FormData(form);
-        const imageInput = document.getElementById('imageInput');
-        let products = await instancesGetter('products');
-        const newId = products.length > 0 ? Number(products[products.length - 1].id) + 1 : 1;
+            const imageData = await getImageData();
+            const products = await instancesGetter('products');
+            const newId = products.length > 0 ? String(Number(products[products.length - 1].id) + 1) : '1';
 
-        if (imageInput.files && imageInput.files[0]) {
-            const image = imageInput.files[0];
-            const reader = new FileReader();
-            reader.onload = async () => {
-                const imageData = reader.result;
-                const newProduct = {
-                    id: newId,
-                    sellerId: seller.id,
-                    name: formData.get('productName'),
-                    price: formData.get('productPrice'),
-                    category: formData.get('category'),
-                    status: 'pending',
-                    imageData: imageData,
-                    description: formData.get('productDescription')
-                };
-
-                fetch(`http://localhost:3000/products`, {
-                    method: 'POST',
-                    body: JSON.stringify(newProduct)
-                })
-                    .then(res => {
-                        if (res.ok) {
-                            alert('Product Added Successfully');
-                            form.reset();
-                            form.style.display = 'none';
-                            if (viewsManager.value === 'product') {
-                                viewsManager.dispatchEvent(new Event('change'));
-                            }
-                        } else {
-                            alert('Failed to add product');
-                        }
-                    })
-                    .catch(err => alert('Error: ' + err));
+            const newProduct = {
+                id: newId,
+                sellerId: seller.id,
+                name: name,
+                price: price,
+                category: category,
+                description: description,
+                status: 'pending',
+                imageData: imageData
             };
-            reader.readAsDataURL(image);
-        } else {
-            alert('Please select an image');
+
+            fetch(`http://localhost:3000/products`, {
+                method: 'POST',
+                body: JSON.stringify(newProduct)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        modal.style.display = 'none';
+
+                        // Refresh product view if active
+                        if (currentView === 'products') {
+                            productAnchor.click();
+                        }
+                    } else {
+                        throw new Error('Failed to add product');
+                    }
+                })
+                .catch(err => alert('Error: ' + err));
         }
     });
+
+// Modal close handlers
+    document.querySelectorAll('.close-modal').forEach((btn) => {
+        btn.addEventListener('click', function() {
+            document.getElementById('formModal').style.display = 'none';
+            document.getElementById('deleteModal').style.display = 'none';
+            document.getElementById('updateModal').style.display = 'none';
+        });
+    });
+
+// Cancel button inside modals
+    document.querySelector('#formModal .modal-footer .btn').addEventListener('click', function() {
+        document.getElementById('formModal').style.display = 'none';
+    });
+
+// Success button in product form modal (alternative to form submit)
+    document.getElementById('success').addEventListener('click', function() {
+        form.dispatchEvent(new Event('submit'));
+    });
+
+// Delete/Update confirm buttons
+    document.getElementById('cancelDelete').addEventListener('click', function() {
+        document.getElementById('deleteModal').style.display = 'none';
+    });
+
+    document.getElementById('cancelUpdate').addEventListener('click', function() {
+        document.getElementById('updateModal').style.display = 'none';
+    });
+
 
 
     next.addEventListener('click', async function() {
         page++;
-        const viewsManagerValue = viewsManager.value;
-        switch (viewsManagerValue) {
 
-            case 'product':
+        switch (currentView) {
+            case 'products':
                 const productList = (await instancesGetter('products')).filter(product => product.sellerId === seller.id);
                 const partitionedProductList = partitioner(productList, page, pageSize);
+
                 if (partitionedProductList.length === 0) {
                     page--;
                     alert('No more products');
                     return;
                 }
-                truncate(document.getElementById('productBody'), '.productRow');
-                rowsCreator(partitionedProductList, productRow, productBody, 'status', ['.productName', '.statusModification']);
+
+                truncate(productBody, '.productRow');
+                productRowsCreator(partitionedProductList, productRow, productBody, 'status', ['.productName', '.statusModification']);
                 break;
 
-            default:
+            case 'orders':
                 const orderList = (await instancesGetter('orders')).filter(order => order.sellerId === seller.id);
                 const partitionedOrderList = partitioner(orderList, page, pageSize);
+
                 if (partitionedOrderList.length === 0) {
                     page--;
                     alert('No more orders');
                     return;
                 }
-                truncate(document.getElementById('orderBody'), '.orderRow');
-                orderRowsCreator(partitionedOrderList, orderBody, orderRow);
+
+                truncate(orderBody, '.orderRow');
+                await orderRowsCreator(partitionedOrderList, orderBody, orderRow);
+                break;
         }
     });
 
@@ -319,19 +462,19 @@ window.addEventListener('load', () => {
         }
 
         page--;
-        const viewsManagerValue = viewsManager.value;
-        switch (viewsManagerValue) {
 
-            case 'product':
+        switch (currentView) {
+            case 'products':
                 const productList = (await instancesGetter('products')).filter(product => product.sellerId === seller.id);
-                truncate(document.getElementById('productBody'), '.productRow');
-                rowsCreator(partitioner(productList, page, pageSize), productRow, productBody, 'status', ['.productName', '.statusModification']);
+                truncate(productBody, '.productRow');
+                productRowsCreator(partitioner(productList, page, pageSize), productRow, productBody, 'status', ['.productName', '.statusModification']);
                 break;
 
-            default:
+            case 'orders':
                 const orderList = (await instancesGetter('orders')).filter(order => order.sellerId === seller.id);
-                truncate(document.getElementById('orderBody'), '.orderRow');
-                orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
+                truncate(orderBody, '.orderRow');
+                await orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
+                break;
         }
     });
 });

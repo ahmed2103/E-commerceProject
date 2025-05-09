@@ -3,7 +3,7 @@ import { display, hide, truncate, partitioner, orderRowsCreator,confirmUpdate,co
 const pageSize = 10;
 let page = 1;
 let currentView;
-window.addEventListener('load', async () => {
+window.addEventListener('load', async (ev) => {
     const dashAncor = document.getElementById('dashboardAnchor');
     const userName = document.querySelector('.dashboard-username');
     const userAnchor = document.getElementById('userAnchor');
@@ -23,8 +23,9 @@ window.addEventListener('load', async () => {
     const orderRow = document.getElementsByClassName('orderRow')[0];
     const prev = document.getElementById('prev');
     const next = document.getElementById('next');
-    const modal = document.getElementById('modal');
     const lastOrdersTable = document.getElementById('lastOrdersTable');
+    const deleteModal = document.getElementById('deleteModal');
+    const updateModal = document.getElementById('updateModal');
     let userAdd;
 
     const lastOrdersBody = document.getElementById('lastOrdersBody');
@@ -33,6 +34,7 @@ window.addEventListener('load', async () => {
 
     const admin = JSON.parse(localStorage.getItem('user'));
     userName.innerText = `Hello ${admin.name}`;
+
     dashAncor.addEventListener('click', async () => {
         document.getElementById('oCount').textContent = (await instancesGetter('orders')).length;
         document.getElementById('pCount').textContent = (await instancesGetter('products')).length;
@@ -354,4 +356,17 @@ window.addEventListener('load', async () => {
                 await orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
         }
     });
+    if (ev.target === deleteModal) {
+        deleteModal.style.display = 'none';
+    }
+    if (ev.target === updateModal) {
+        updateModal.style.display = 'none';
+    }
+    document.querySelectorAll('.close-modal').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            deleteModal.style.display = 'none';
+            updateModal.style.display = 'none';
+        });
+    });
+
 });

@@ -32,6 +32,9 @@ window.addEventListener('load', () => {
                 else if(user.role === 'admin') {
                     window.location.href = `./admin_dashboard.html`;
                 }
+                else if(user.role === 'seller') {
+                    window.location.href = `./seller_dashboard.html`;
+                }
             })
             .catch(err => {
                 console.error('Error fetching users:', err);
