@@ -1,0 +1,13 @@
+.profile {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 30px;
+  height: 100vh;
+  background: var(--light-bg);
+}
+.profile-sidebar,
+.profile-content {
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
