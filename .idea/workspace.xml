@@ -5,32 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="360e6571-0551-4c63-83f7-63fe6180544b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/E-commerceProject.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json-server" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/json-server" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json-server.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json-server.ps1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json5" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/json5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json5.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json5.ps1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/mime" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mime.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mime.ps1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dayjs/plugin/arraySupport.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/dayjs/plugin/arraySupport.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/dayjs/plugin/objectSupport.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/dayjs/plugin/objectSupport.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/json-server/lib/bin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json-server/lib/bin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/json5/lib/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/json5/lib/cli.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/bin/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/bin/cli.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/src/mime_cli.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/src/mime_cli.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/admin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/logIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/logIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/seller.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/seller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/seller_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/seller_dashboard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,8 +76,11 @@
       <recent name="$PROJECT_DIR$/script" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.seller_dashboard.html (1)">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration name="admin_dashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/admin_dashboard.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/login.html" useBuiltInWebServerPort="true">
@@ -107,19 +89,16 @@
     <configuration name="profile.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/profile.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="register.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/register.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <configuration name="seller_dashboard.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/seller_dashboard.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.seller_dashboard.html (1)" />
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.login.html" />
+        <item itemvalue="JavaScript Debug.seller_dashboard.html (1)" />
         <item itemvalue="JavaScript Debug.admin_dashboard.html" />
         <item itemvalue="JavaScript Debug.profile.html" />
-        <item itemvalue="JavaScript Debug.register.html" />
       </list>
     </recent_temporary>
   </component>
@@ -159,7 +138,7 @@
       <workItem from="1746620789017" duration="13310000" />
       <workItem from="1746688985423" duration="26223000" />
       <workItem from="1746778213362" duration="21104000" />
-      <workItem from="1746806090017" duration="3710000" />
+      <workItem from="1746806090017" duration="14607000" />
     </task>
     <servers />
   </component>
