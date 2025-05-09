@@ -187,6 +187,14 @@ textarea:focus {
   box-shadow: var(--ring-default);
 }
 
+/* img */
+.victor {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 /* Header Styles */
 #main-header {
   background-color: var(--white);
