@@ -13,9 +13,12 @@ const truncate = (elementBody, row) => {
 }
 const instancesGetter = async(modelStr) => {
     const res = await fetch(`http://localhost:3000/${modelStr}`);
-    return  (await res.json());
+    const instances = await res.json();
+    console.log(instances);
+    return instances;
 }
 const partitioner = (list, pageNum, pageSize) => {
+    console.log(list.slice((pageNum - 1) * pageSize, pageNum * pageSize));
     return list.slice((pageNum - 1) * pageSize, pageNum * pageSize);
 }
 
@@ -25,26 +28,24 @@ const userRowsCreator = (models, itemToClone,bodyElement) => {
         newRow.setAttribute('id', model.id);
         const cellList= newRow.querySelectorAll('td');
         console.log(model.role);
-        cellList[0].textContent = model.id;
-        cellList[1].textContent = model.name;
-        cellList[2].textContent = model.email;
-        cellList[3].querySelector('.roleMod').value = model.role;
+        cellList[0].textContent = model.name;
+        cellList[1].textContent = model.email;
+        cellList[2].querySelector('.roleMod').value = model.role;
         newRow.style.display = 'table-row';
         bodyElement.appendChild(newRow);
     });
         const newRow = itemToClone.cloneNode(true);
         console.log(newRow);
-        newRow.getElementsByTagName('td')[4].innerHTML = '';
-        newRow.querySelectorAll('td')[0].textContent = 'New';
+        newRow.getElementsByTagName('td')[3].innerHTML = '';
         const newText = document.createElement('input');
         newText.setAttribute('type', 'text');
         newText.setAttribute('class', 'newUserName');
         newText.className = 'userName';
-        newRow.querySelectorAll('td')[1].appendChild(newText);
+        newRow.querySelectorAll('td')[0].appendChild(newText);
         const newBtn = document.createElement('button');
         newBtn.innerHTML = '<i class="fas fa-plus"></i>';
         newBtn.id = 'userAdd'
-        newRow.getElementsByTagName('td')[4].appendChild(newBtn);
+        newRow.getElementsByTagName('td')[3].appendChild(newBtn);
         newRow.style.display = 'table-row';
         bodyElement.appendChild(newRow);
 }
@@ -53,34 +54,43 @@ const productRowsCreator = (models, itemToClone,bodyElement, objSpecific,classes
         const newRow = itemToClone.cloneNode(true);
         newRow.setAttribute('id', model.id);
         const cellList= newRow.querySelectorAll('td');
-        cellList[0].textContent = model.id;
-        cellList[1].textContent = model.name;
-        cellList[2].querySelector('.statusModification').value = model.status;
-        cellList[3].textContent = model.category;
+        cellList[0].textContent = model.name;
+        cellList[1].querySelector('.statusModification').value = model.status;
+        cellList[2].textContent = model.category;
+        cellList[3].textContent = model.price;
         newRow.style.display = 'table-row';
         bodyElement.appendChild(newRow);
     });
 
 }
-const orderRowsCreator = (orderList, orderBody,rowForClone) => {
-    orderList.forEach(order => {
+const orderRowsCreator = async (orderList, orderBody, rowForClone) => {
+    const users = await instancesGetter('users');
+    const products = await instancesGetter('products');
+
+    for (const order of orderList) {
         const newOrderRow = rowForClone.cloneNode(true);
         newOrderRow.setAttribute('id', order.id);
-        const cellList= newOrderRow.querySelectorAll('td');
-        cellList[0].textContent = order.id;
-        cellList[1].textContent = order.customerId;
-        cellList[2].querySelector('.orderState').value = order.status;
+        const cellList = newOrderRow.querySelectorAll('td');
 
-        let orderDetailString = ``
-        order.products.forEach(product => {
-            orderDetailString += `product id: ${product.productId}\tquantity: ${product.quantity}\n`;
-        });
-        cellList[3].querySelector('pre').textContent = orderDetailString;
-        cellList[4].textContent = order.orderDate;
+        const customer = users.find(user => user.id === order.customerId);
+        cellList[0].textContent = customer ? customer.name : 'Unknown';
+
+        cellList[1].querySelector('.orderState').value = order.status;
+
+        let orderDetailString = '';
+        for (const product of order.products) {
+            const foundProduct = products.find(p => p.id === product.productId);
+            orderDetailString += `Product: ${foundProduct?.name || 'N/A'}\tQuantity: ${product.quantity}\n`;
+        }
+
+        cellList[2].querySelector('pre').textContent = orderDetailString.trim();
+        cellList[3].textContent = order.orderDate;
+
         newOrderRow.style.display = 'table-row';
         orderBody.appendChild(newOrderRow);
-    });
-}
+    }
+};
+
 
 const productCardCreator = (productList, productCard, productGrid, productModal) => {
     for (let product of productList) {
@@ -103,4 +113,40 @@ const productCardCreator = (productList, productCard, productGrid, productModal)
     }
 }
 
-export {partitioner, instancesGetter, storeInSession, display, truncate, userRowsCreator, orderRowsCreator, hide, productCardCreator, productRowsCreator};
+const confirmUpdate = () => {
+    return new Promise((resolve) => {
+        const modal = document.getElementById('updateModal');
+        const cancelBtn = document.getElementById('cancelUpdate');
+        const confirmBtn = document.getElementById('confirmUpdate');
+        console.log('from modal', modal);
+        modal.style.display = 'block';
+        cancelBtn.onclick = () => {
+            modal.style.display = 'none';
+            resolve(false);
+        }
+        confirmBtn.onclick = () => {
+            modal.style.display = 'none';
+            resolve(true);
+        }
+    })
+}
+const confirmDelete = () => {
+    return new Promise((resolve) => {
+        const modal = document.getElementById('deleteModal');
+        console.log('from modal', modal);
+        const cancelBtn = document.getElementById('cancelDelete');
+        const confirmBtn = document.getElementById('confirmDelete');
+        modal.style.display = 'block';
+        cancelBtn.onclick = () => {
+            modal.style.display = 'none';
+            resolve(false);
+        }
+        confirmBtn.onclick = () => {
+            modal.style.display = 'none';
+            resolve(true);
+        }
+    })
+}
+
+
+export {partitioner,confirmUpdate, confirmDelete, instancesGetter, storeInSession, display, truncate, userRowsCreator, orderRowsCreator, hide, productCardCreator, productRowsCreator};

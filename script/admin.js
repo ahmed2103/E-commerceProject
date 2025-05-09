@@ -1,6 +1,6 @@
-import { display, hide, truncate, partitioner, orderRowsCreator, instancesGetter,userRowsCreator,productRowsCreator } from "./utils.js";
+import { display, hide, truncate, partitioner, orderRowsCreator,confirmUpdate,confirmDelete, instancesGetter,userRowsCreator,productRowsCreator } from "./utils.js";
 
-const pageSize = 5;
+const pageSize = 10;
 let page = 1;
 let currentView;
 window.addEventListener('load', async () => {
@@ -23,6 +23,8 @@ window.addEventListener('load', async () => {
     const orderRow = document.getElementsByClassName('orderRow')[0];
     const prev = document.getElementById('prev');
     const next = document.getElementById('next');
+    const modal = document.getElementById('modal');
+    const lastOrdersTable = document.getElementById('lastOrdersTable');
     let userAdd;
 
     const lastOrdersBody = document.getElementById('lastOrdersBody');
@@ -36,7 +38,7 @@ window.addEventListener('load', async () => {
         document.getElementById('pCount').textContent = (await instancesGetter('products')).length;
         document.getElementById('cCount').textContent = (await instancesGetter('users')).length;
         truncate(lastOrdersBody, '.orderRow');
-        orderRowsCreator(lastOrders, lastOrdersBody, orderRow);
+        await orderRowsCreator(lastOrders, lastOrdersBody, orderRow);
         hide([prev,next])
     })
 
@@ -92,7 +94,8 @@ window.addEventListener('load', async () => {
                 currentView = 'orders';
                 truncate(orderBody, '.orderRow');
                 const orderList = await instancesGetter('orders');
-                orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
+                const partition = partitioner(orderList, page, pageSize);
+                await orderRowsCreator(partition, orderBody, orderRow);
                 display([prev,next]);
     });
     dashAncor.click()
@@ -111,34 +114,38 @@ window.addEventListener('load', async () => {
                     alert('User not found');
                     return;
                 }
+                if (await confirmUpdate()){
+                    const updatedUser = {
+                        ...oldUser,
+                        role: userRole
+                    };
 
-                const updatedUser = {
-                    ...oldUser,
-                    role: userRole
-                };
+                    fetch(`http://localhost:3000/users/${userId}`, {
+                        method: 'PUT',
+                        body: JSON.stringify(updatedUser)
+                    }).then(response => response.json())
+                        .then(data => alert('User Updated Successfully'))
+                        .catch(err => alert('Error updating user: ' + err));
+                }
 
-                fetch(`http://localhost:3000/users/${userId}`, {
-                    method: 'PUT',
-                    body: JSON.stringify(updatedUser)
-                }).then(response => response.json())
-                    .then(data => alert('User Updated Successfully'))
-                    .catch(err => alert('Error updating user: ' + err));
+
             }
             if (target.classList.contains('userDelete')) {
-                console.log('delete');
                 const userRow = target.closest('.userRow');
                 const userId = userRow.getAttribute('id');
                 console.log(userId);
-                fetch(`http://localhost:3000/users/${userId}`, {
-                    method: 'DELETE',
-                }).then(res => {
-                    if (res.ok) {
-                        alert('User Deleted Successfully');
-                        userRow.remove();
-                    } else {
-                        alert('Failed to delete user');
-                    }
-                }).catch(err => alert('Error: ' + err));
+                if(await confirmDelete()){
+                    fetch(`http://localhost:3000/users/${userId}`, {
+                        method: 'DELETE',
+                    }).then(res => {
+                        if (res.ok) {
+                            userRow.remove();
+                        } else {
+                            alert('Failed to delete user');
+                        }
+                    }).catch(err => alert('Error: ' + err));
+                }
+
             }
     });
     //
@@ -157,37 +164,39 @@ window.addEventListener('load', async () => {
                     alert('Product not found');
                     return;
                 }
-
-                const updatedProduct = {
+                if(await confirmUpdate()){
+                    const updatedProduct = {
                     ...oldProduct,
                     status: productStatus
                 };
 
-                fetch(`http://localhost:3000/products/${productId}`, {
-                    method: 'PUT',
-                    body: JSON.stringify(updatedProduct)
-                }).then(response => response.json())
-                    .then(data => alert('Product Updated Successfully'))
-                    .catch(err => alert('Error updating product: ' + err));
+                    fetch(`http://localhost:3000/products/${productId}`, {
+                        method: 'PUT',
+                        body: JSON.stringify(updatedProduct)
+                    }).catch(err => alert('Error updating product: ' + err));}
+
+
             }
             if (target.classList.contains('productDelete')) {
                 const productRow = target.closest('.productRow');
                 const productId = productRow.getAttribute('id');
-                fetch(`http://localhost:3000/products/${productId}`, {
-                    method: 'DELETE',
+                if(await confirmDelete()){
+                    fetch(`http://localhost:3000/products/${productId}`, {
+                        method: 'DELETE',
 
-                }).then(res => {
-                    if (res.ok) {
-                        alert('Product Deleted Successfully');
-                        productRow.remove();
-                    } else {
-                        alert('Failed to delete product');
-                    }
-                }).catch(err => alert('Error: ' + err));
+                    }).then(res => {
+                        if (res.ok) {
+                            productRow.remove();
+                        } else {
+                            alert('Failed to delete product');
+                        }
+                    }).catch(err => alert('Error: ' + err));
+                }
+
             }
     });
     //
-    orderTable.addEventListener('click', async function(event) {
+    lastOrdersTable.addEventListener('click', async function(event) {
         const target = event.target;
         console.log(target.classList);
             if (target.classList.contains('orderUpdate')) {
@@ -201,7 +210,50 @@ window.addEventListener('load', async () => {
                     alert('Order not found');
                     return;
                 }
+                if (await confirmUpdate()){
+                    const updatedOrder = {
+                        ...oldOrder,
+                        status: orderState
+                    };
 
+                    fetch(`http://localhost:3000/orders/${orderId}`, {
+                        method: 'PUT',
+                        body: JSON.stringify(updatedOrder)
+                    }).catch(err => alert('Error updating order: ' + err));
+                }
+
+            }
+            if (target.classList.contains('orderDelete')) {
+                const orderRow = target.closest('.orderRow');
+                const orderId = orderRow.getAttribute('id');
+                if(await confirmDelete()){
+                    fetch(`http://localhost:3000/orders/${orderId}`, {
+                        method: 'DELETE',
+
+                    }).then(res => {
+                        if (res.ok) {
+                            orderRow.remove();
+                        }
+                    }).catch(err => alert('Error: ' + err));
+                }
+
+        }
+    });
+    orderTable.addEventListener('click', async function(event) {
+        const target = event.target;
+        console.log(target.classList);
+        if (target.classList.contains('orderUpdate')) {
+            const orderRow = target.closest('.orderRow');
+            const orderId = orderRow.getAttribute('id');
+            const orderState = orderRow.querySelector('.orderState').value;
+            const orders = await instancesGetter('orders');
+            const oldOrder = orders.find(order => order.id === orderId);
+
+            if (!oldOrder) {
+                alert('Order not found');
+                return;
+            }
+            if (await confirmUpdate()){
                 const updatedOrder = {
                     ...oldOrder,
                     status: orderState
@@ -210,26 +262,27 @@ window.addEventListener('load', async () => {
                 fetch(`http://localhost:3000/orders/${orderId}`, {
                     method: 'PUT',
                     body: JSON.stringify(updatedOrder)
-                }).then(response => response.json())
-                    .then(data => alert('Order Updated Successfully'))
-                    .catch(err => alert('Error updating order: ' + err));
+                }).catch(err => alert('Error updating order: ' + err));
             }
-            if (target.classList.contains('orderDelete')) {
-                const orderRow = target.closest('.orderRow');
-                const orderId = orderRow.getAttribute('id');
+
+        }
+        if (target.classList.contains('orderDelete')) {
+            const orderRow = target.closest('.orderRow');
+            const orderId = orderRow.getAttribute('id');
+            if(await confirmDelete()){
                 fetch(`http://localhost:3000/orders/${orderId}`, {
                     method: 'DELETE',
 
                 }).then(res => {
                     if (res.ok) {
-                        alert('Order Deleted Successfully');
                         orderRow.remove();
-                    } else {
-                        alert('Failed to delete order');
                     }
                 }).catch(err => alert('Error: ' + err));
+            }
+
         }
     });
+
     //
 
 
@@ -270,7 +323,7 @@ window.addEventListener('load', async () => {
                     return;
                 }
                 truncate(orderBody, '.orderRow');
-                orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
+                await orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
         }
     });
 
@@ -298,7 +351,7 @@ window.addEventListener('load', async () => {
             case 'orders':
                 const orderList = await instancesGetter('orders');
                 truncate(orderBody, '.orderRow');
-                orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
+                await orderRowsCreator(partitioner(orderList, page, pageSize), orderBody, orderRow);
         }
     });
 });
