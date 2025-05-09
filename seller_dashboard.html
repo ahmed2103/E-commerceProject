@@ -15,34 +15,6 @@
   <body>
     <div class="dashboard">
       <!-- Sidebar -->
-      <!-- <aside class="dashboard-sidebar">
-        <div class="seller-title">
-          <h3>Add Product</h3>
-        </div>
-        <form action="" class="seller-form"></form>
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" />
-        <p class="">error</p>
-
-        <label for="price">Price</label>
-        <input type="number" name="price" id="price" />
-        <p class="">error</p>
-
-        <label for="category">Category</label>
-        <div class="custom-select">
-          <select name="category" id="category">
-            <option value="0">select category</option>
-            <option value="1">computer</option>
-            <option value="2">laptop</option>
-          </select>
-        </div>
-
-        <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-        <label for="image">Image</label>
-        <input type="file" name="image" id="image" class="" accept="image/*" />
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </aside> -->
       <aside class="dashboard-sidebar">
         <!-- User Info -->
         <div class="dashboard-user">
@@ -67,21 +39,18 @@
               <a href="#"><i class="fas fa-box"></i>Products</a>
             </li>
             <li>
-              <a href="#"><i class="fas fa-users"></i>Users</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-cog"></i>Settings</a>
+              <a href="#"><i class="fas fa-users"></i>Orders</a>
             </li>
           </ul>
         </nav>
       </aside>
-      <main>
+      <main class="dashboard-content">
+                <!-- Header -->
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Dashboard</h1>
+        </div>
         <!-- Content -->
-        <section class="dashboard-content">
-          <!-- Header -->
-          <div class="dashboard-header">
-            <h2>seller</h2>
-          </div>
+        <section id="dashboard-view" class="view active">
           <!-- Cards -->
           <div class="dashboard-cards">
             <div class="dashboard-card">
@@ -89,7 +58,7 @@
                 <i class="fas fa-box"></i>
               </div>
               <div class="dashboard-card-info">
-                <h3>120</h3>
+                <h3 id="pCount">120</h3>
                 <p>Products</p>
               </div>
             </div>
@@ -98,7 +67,7 @@
                 <i class="fas fa-users"></i>
               </div>
               <div class="dashboard-card-info">
-                <h3>75</h3>
+                <h3 id="cCount">75</h3>
                 <p>Customers</p>
               </div>
             </div>
@@ -107,55 +76,205 @@
                 <i class="fas fa-shopping-cart"></i>
               </div>
               <div class="dashboard-card-info">
-                <h3>30</h3>
+                <h3 id="oCount">30</h3>
                 <p>Orders</p>
               </div>
             </div>
           </div>
-          <!-- products table -->
-          <section class="dashboard-product">
-            <div class="dashboard-table">
-              <div class="dashboard-table-header">
-                <h3 class="dashboard-table-title-">Products</h3>
-              </div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Product Name</td>
-                    <td>Price</td>
-                    <td>Category</td>
-                    <td>Description</td>
-                    <td class="table-actions">
-                      <button class="edit">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button class="delete">
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+
+          <!-- Recent Orders Table -->
+          <div class="dashboard-table">
+            <div class="dashboard-table-header">
+              <div class="dashboard-table-title">Recent Orders</div>
             </div>
-          </section>
-          <!-- pagination -->
-          <div class="pagination">
-            <button>&laquo;</button>
-            <button>&raquo;</button>
+            <table id="lastOrdersTable">
+              <thead>
+                <tr>
+                  <th>Customer name</th>
+                  <th>Status</th>
+                  <th>Details</th>
+                  <th>Order Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="lastOrdersBody">
+                <tr class="orderRow">
+                  <td>Jane Doe</td>
+                  <td>
+                    <select class="orderState">
+                      <option value="confirmed">Confirmed</option>
+                      <option value="canceled">Canceled</option>
+                      <option value="delivered">Delivered</option>
+                    </select>
+                  </td>
+                  <td><pre>Order details here</pre></td>
+                  <td>2025-05-01</td>
+                  <td class="table-actions">
+                    <button class="edit">
+                      <i class="fas fa-edit orderUpdate"></i>
+                    </button>
+                    <button class="delete">
+                      <i class="fas fa-trash-alt orderDelete"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+              <div class="pagination">
+      <button id="prev" class="prev-btn">&laquo;</button>
+      <button id="next" class="next-btn">&raquo;</button>
+    </div>
+                    <div class="dashboard-table" id="productControl">
+            <div class="dashboard-table-header">
+              <div class="dashboard-table-title">Products</div>
+              <div class="dashboard-table-actions">
+              </div>
+            </div>
+
+            <table id="productTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productBody">
+                <tr class="productRow">
+                  <td>Product Name</td>
+                  <td>
+                    <select class="statusModification">
+                      <option value="approved">Approve</option>
+                      <option value="rejected">Reject</option>
+                      <option value="pending">Pending</option>
+                    </select>
+                  </td>
+                  <td>Electronics</td>
+                  <td>#1234</td>
+                  <td class="table-actions">
+                    <button class="edit">
+                      <i class="fas fa-edit productUpdate"></i>
+                    </button>
+                    <button class="delete">
+                      <i class="fas fa-trash-alt productDelete"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+              <div class="pagination">
+      <button id="prev" class="prev-btn">&laquo;</button>
+      <button id="next" class="next-btn">&raquo;</button>
+    </div>
+        </section>
+
+        <!-- Products View -->
+        <section id="products-view" class="view">
+          <div class="dashboard-table" id="productControl">
+            <div class="dashboard-table-header">
+              <div class="dashboard-table-title">Products</div>
+              <div class="dashboard-table-actions">
+              </div>
+            </div>
+
+            <table id="productTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productBody">
+                <tr class="productRow">
+                  <td>Product Name</td>
+                  <td>
+                    <select class="statusModification">
+                      <option value="approved">Approve</option>
+                      <option value="rejected">Reject</option>
+                      <option value="pending">Pending</option>
+                    </select>
+                  </td>
+                  <td>Electronics</td>
+                  <td>#1234</td>
+                  <td class="table-actions">
+                    <button class="edit">
+                      <i class="fas fa-edit productUpdate"></i>
+                    </button>
+                    <button class="delete">
+                      <i class="fas fa-trash-alt productDelete"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+              <div class="pagination">
+      <button id="prev" class="prev-btn">&laquo;</button>
+      <button id="next" class="next-btn">&raquo;</button>
+    </div>
+        </section>
+
+        <!-- Orders View -->
+        <section id="orders-view" class="view">
+          <div class="dashboard-table" id="orderControl">
+            <div class="dashboard-table-header">
+              <div class="dashboard-table-title">Orders</div>
+              <div class="dashboard-table-actions">
+              </div>
+            </div>
+
+            <table id="orderTable">
+              <thead>
+                <tr>
+                  <th>Customer name</th>
+                  <th>Status</th>
+                  <th>Details</th>
+                  <th>Order Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="ordersBody">
+                <tr class="orderRow">
+                  <td>Jane Doe</td>
+                  <td>
+                    <select class="orderState">
+                      <option value="confirmed">Confirmed</option>
+                      <option value="canceled">Canceled</option>
+                      <option value="delivered">Delivered</option>
+                    </select>
+                  </td>
+                  <td><pre>Order details here</pre></td>
+                  <td>2025-05-01</td>
+                  <td class="table-actions">
+                    <button class="edit">
+                      <i class="fas fa-edit orderUpdate"></i>
+                    </button>
+                    <button class="delete">
+                      <i class="fas fa-trash-alt orderDelete"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+              <div class="pagination">
+      <button id="prev" class="prev-btn">&laquo;</button>
+      <button id="next" class="next-btn">&raquo;</button>
+    </div>
         </section>
       </main>
     </div>
+      </main>
+    </div>
     <!-- modal -->
+     <!-- delete modal -->
     <div class="modal" id="">
       <div class="modal-content">
         <div class="modal-header">
@@ -178,5 +297,52 @@
         </div>
       </div>
     </div>
+    <!-- product modal -->
+     <!-- to show by the js give id and use class list .add to add active class to show the model -->
+    <div class="modal" id="">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="">Product Details</h2>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="product-modal-details">
+            <form action="" class="seller-form">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" />
+          <p class="">error</p>
+
+          <label for="price">Price</label>
+          <input type="number" name="price" id="price" />
+          <p class="">error</p>
+
+          <label for="category">Category</label>
+          <div class="custom-select">
+            <select name="category" id="category">
+              <option value="0">select category</option>
+            <option value="1">computer</option>
+            <option value="2">laptop</option>
+          </select>
+        </div>
+
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image" class="" accept="image/*" />
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="modal-actions">
+            <button class="btn">Cancel</button>
+            <!-- make the text of the button dynamic by js if add make the text add if update make the text update
+              -->
+            <button class="btn btn-success">update or add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script/admin2.js"></script>
   </body>
 </html>

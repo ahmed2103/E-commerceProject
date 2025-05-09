@@ -1365,7 +1365,7 @@ table tr:hover {
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 .pagination button {
@@ -1974,15 +1974,19 @@ table tr:hover {
   justify-content: flex-end;
   gap: 10px;
 }
-#email-found,#password-error{
+#email-found,
+#password-error {
   display: none;
   color: red;
   font-size: 14px;
   margin-top: 10px;
 }
-.orderRow,.productRow,.userRow{
+.orderRow,
+.productRow,
+.userRow {
   display: none;
 }
-#prev,#next{
+#prev,
+#next {
   display: block;
 }
