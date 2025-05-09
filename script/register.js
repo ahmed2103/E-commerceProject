@@ -1,4 +1,4 @@
-import { instancesGetter} from "./utils";
+import { instancesGetter} from "./utils.js";
 
 window.addEventListener("load", function () {
     const nameInput = document.getElementById('name');
@@ -12,10 +12,10 @@ window.addEventListener("load", function () {
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
         if (passwordInput.value !== confirmPasswordInput.value) {
-            errorMessage.style.display = 'block';
+            passwordError.style.display = 'block';
         }
         else{
-            errorMessage.style.display = 'none';
+            passwordError.style.display = 'none';
             const users = await instancesGetter('users');
             const user = users.find(user => user.email === emailInput.value);
             if (user) {
@@ -24,15 +24,24 @@ window.addEventListener("load", function () {
             }else{
                 emailFound.style.display = 'none';
                 const formData = new FormData(form);
-                fetch('http://localhost:3000/api/users', {
+                fetch('http://localhost:3000/users', {
                     method: 'POST',
-                    id: Number(users.slice(-1)[0].id) + 1,
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    password: formData.get('password'),
-                    role: 'customer'
+                    body: JSON.stringify({
+                        id: Number(users.slice(-1)[0].id) + 1,
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        password: formData.get('password'),
+                        role: formData.get('role')
+                    })
                 })
-            }
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = 'login.html';
+                    }
+                })
+
+
         }
+    }
     })
 })

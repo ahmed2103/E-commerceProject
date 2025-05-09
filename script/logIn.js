@@ -26,7 +26,9 @@ window.addEventListener('load', () => {
                 }
 
                 localStorage.setItem('user', JSON.stringify(user));
-                window.location.href = `${user.role}.html`;
+                if(user.role === 'customer') {
+                    window.location.href = `index.html`;
+                }
             })
             .catch(err => {
                 console.error('Error fetching users:', err);

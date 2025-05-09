@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
@@ -8,160 +8,334 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-  </head>
-  <body>
-    <div class="dashboard">
-      <!-- Sidebar -->
-      <aside class="dashboard-sidebar">
+    <script src="script/admin.js" type="module"></script>
+
+</head>
+<body>
+<div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
         <!-- User Info -->
         <div class="dashboard-user">
-          <div class="dashboard-avatar">
-            <img src="user.jpg" alt="User Avatar" />
-          </div>
-          <div>
-            <div class="dashboard-username">John Doe</div>
-            <div class="dashboard-role">Admin</div>
-          </div>
+            <div class="dashboard-avatar">
+                <img src="user.jpg" alt="User Avatar" />
+            </div>
+            <div>
+                <div class="dashboard-username">John Doe</div>
+                <div class="dashboard-role">Admin</div>
+            </div>
         </div>
 
         <!-- Navigation -->
         <nav class="dashboard-nav">
-          <ul>
-            <li>
-              <a href="#" class="active"
-                ><i class="fas fa-home"></i>Dashboard</a
-              >
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-box"></i>Products</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-users"></i>Users</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-cog"></i>Settings</a>
-            </li>
-          </ul>
+            <ul>
+                <li>
+                    <a href="#" class="active" id="dashboardAnchor">
+                        <i class="fas fa-home"></i>Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="productAnchor">
+                        <i class="fas fa-box"></i>Products
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="userAnchor">
+                        <i class="fas fa-users"></i>Users
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="orderAnchor">
+                        <i class="fas fa-receipt"></i>Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>Settings
+                    </a>
+                </li>
+            </ul>
         </nav>
-      </aside>
+    </aside>
 
-      <!-- Main Content -->
-      <main class="dashboard-content">
+    <!-- Main Content -->
+    <main class="dashboard-content">
         <!-- Header -->
         <div class="dashboard-header">
-          <h1 class="dashboard-title">Dashboard</h1>
+            <h1 class="dashboard-title">Dashboard</h1>
         </div>
+
+        <!-- Dashboard View -->
         <section id="dashboard-view" class="view active">
-          <!-- Cards -->
-          <div class="dashboard-cards">
-            <div class="dashboard-card">
-              <div class="dashboard-card-icon blue">
-                <i class="fas fa-box"></i>
-              </div>
-              <div class="dashboard-card-info">
-                <h3>120</h3>
-                <p>Products</p>
-              </div>
-            </div>
-            <div class="dashboard-card">
-              <div class="dashboard-card-icon green">
-                <i class="fas fa-users"></i>
-              </div>
-              <div class="dashboard-card-info">
-                <h3>75</h3>
-                <p>Customers</p>
-              </div>
-            </div>
-            <div class="dashboard-card">
-              <div class="dashboard-card-icon orange">
-                <i class="fas fa-shopping-cart"></i>
-              </div>
-              <div class="dashboard-card-info">
-                <h3>30</h3>
-                <p>Orders</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Table -->
-          <div class="dashboard-table">
-            <div class="dashboard-table-header">
-              <div class="dashboard-table-title">Recent Orders</div>
-              <div class="dashboard-table-actions">
-                <div class="dashboard-table-search">
-                  <input type="text" placeholder="Search..." />
-                  <button><i class="fas fa-search"></i></button>
+            <!-- Cards -->
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon blue">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="dashboard-card-info">
+                        <h3 id="pCount">120</h3>
+                        <p>Products</p>
+                    </div>
                 </div>
-              </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon green">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="dashboard-card-info">
+                        <h3 id="cCount">75</h3>
+                        <p>Customers</p>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon orange">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="dashboard-card-info">
+                        <h3 id="oCount">30</h3>
+                        <p>Orders</p>
+                    </div>
+                </div>
             </div>
 
-            <table>
-              <thead>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Customer</th>
-                  <th>Status</th>
-                  <th>Total</th>
-                  <th>Date</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>#1234</td>
-                  <td>Jane Doe</td>
-                  <td>Shipped</td>
-                  <td>$120</td>
-                  <td>2025-05-01</td>
-                  <td class="table-actions">
-                    <button class="edit"><i class="fas fa-edit"></i></button>
-                    <button class="delete">
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
-                  </td>
-                </tr>
-                <!-- Add more rows as needed -->
-              </tbody>
-            </table>
-          </div>
+            <!-- Recent Orders Table -->
+            <div class="dashboard-table">
+                <div class="dashboard-table-header">
+                    <div class="dashboard-table-title">Recent Orders</div>
+                </div>
+                <table id="lastOrdersTable">
+                    <thead>
+                    <tr>
+                        <th>Customer name</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                        <th>Order Date</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="lastOrdersBody">
+                    <tr class="orderRow">
+                        <td>Jane Doe</td>
+                        <td>
+                            <select class="orderState">
+                                <option value="confirmed">Confirmed</option>
+                                <option value="canceled">Canceled</option>
+                                <option value="delivered">Delivered</option>
+                            </select>
+                        </td>
+                        <td><pre>Order details here</pre></td>
+                        <td>2025-05-01</td>
+                        <td class="table-actions">
+                            <button class="edit"><i class="fas fa-edit orderUpdate"></i></button>
+                            <button class="delete">
+                                <i class="fas fa-trash-alt orderDelete"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-          <!-- Pagination -->
-          <div class="pagination">
-            <button>&laquo;</button>
-            <button class="active">1</button>
-            <button>&raquo;</button>
-          </div>
         </section>
-        <section id="products-view" class="view">Products</section>
-        <section id="users-view" class="view">Users</section>
-      </main>
-    </div>
-    <!-- modal -->
-    <div class="modal" id="">
-      <div class="modal-content">
+
+        <!-- Products View -->
+        <section id="products-view" class="view">
+            <div class="dashboard-table" id="productControl">
+                <div class="dashboard-table-header">
+                    <div class="dashboard-table-title">Products</div>
+                    <div class="dashboard-table-actions">
+                        <div class="dashboard-table-search">
+                            <input type="text" placeholder="Search..." />
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="productTable">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="productBody">
+                    <tr class="productRow">
+                        <td>Product Name</td>
+                        <td>
+                            <select class="statusModification">
+                                <option value="approved">Approve</option>
+                                <option value="rejected">Reject</option>
+                                <option value="pending">Pending</option>
+                            </select>
+                        </td>
+                        <td>Electronics</td>
+                        <td>#1234</td>
+                        <td class="table-actions">
+                            <button class="edit"><i class="fas fa-edit productUpdate"></i></button>
+                            <button class="delete">
+                                <i class="fas fa-trash-alt productDelete"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Users View -->
+        <section id="users-view" class="view">
+            <div class="dashboard-table" id="userControl">
+                <div class="dashboard-table-header">
+                    <div class="dashboard-table-title">Users</div>
+                    <div class="dashboard-table-actions">
+                        <div class="dashboard-table-search">
+                            <input type="text" placeholder="Search..." />
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="userTable">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="usersBody">
+                    <tr class="userRow">
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <select class="roleMod">
+                                <option value="admin">admin</option>
+                                <option value="customer">customer</option>
+                                <option value="seller">seller</option>
+                            </select>
+                        </td>
+                        <td class="table-actions">
+                            <button class="edit"><i class="fas fa-edit userUpdate"></i></button>
+                            <button class="delete">
+                                <i class="fas fa-trash-alt userDelete"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Orders View -->
+        <section id="orders-view" class="view">
+            <div class="dashboard-table" id="orderControl">
+                <div class="dashboard-table-header">
+                    <div class="dashboard-table-title">Orders</div>
+                    <div class="dashboard-table-actions">
+                        <div class="dashboard-table-search">
+                            <input type="text" placeholder="Search..." />
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="orderTable">
+                    <thead>
+                    <tr>
+                        <th>Customer name</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                        <th>Order Date</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="ordersBody">
+                    <tr class="orderRow">
+                        <td>Jane Doe</td>
+                        <td>
+                            <select class="orderState">
+                                <option value="confirmed">Confirmed</option>
+                                <option value="canceled">Canceled</option>
+                                <option value="delivered">Delivered</option>
+                            </select>
+                        </td>
+                        <td><pre>Order details here</pre></td>
+                        <td>2025-05-01</td>
+                        <td class="table-actions">
+                            <button class="edit"><i class="fas fa-edit orderUpdate"></i></button>
+                            <button class="delete">
+                                <i class="fas fa-trash-alt orderDelete"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- Pagination -->
+<div class="pagination">
+    <button id="prev" class="prev-btn">&laquo;</button>
+    <button id="next" class="next-btn">&raquo;</button>
+</div>
+
+<!-- modal -->
+<div class="modal" id="deleteModal">
+    <div class="modal-content">
         <div class="modal-header">
-          <h2 id="">Confirm Delete</h2>
-          <span class="close-modal">&times;</span>
+            <h2 id="">Confirm Delete</h2>
+            <span class="close-modal">&times;</span>
         </div>
         <div class="modal-body">
-          <div class="delete-modal-details">
-            <p>
-              Are you sure you want to delete this product? This action cannot
-              be undone.
-            </p>
-          </div>
+            <div class="delete-modal-details">
+                <p>
+                    Are you sure you want to delete this? This action cannot
+                    be undone.
+                </p>
+            </div>
         </div>
         <div class="modal-footer">
-          <div class="modal-actions">
-            <button class="btn">Cancel</button>
-            <button class="btn btn-danger">delete</button>
-          </div>
+            <div class="modal-actions">
+                <button class="btn" id="cancelDelete">Cancel</button>
+                <button class="btn btn-danger" id="confirmDelete">delete</button>
+            </div>
         </div>
-      </div>
     </div>
-    <script src="script/admin2.js"></script>
-  </body>
+</div>
+
+
+<div class="modal" id="updateModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="">Confirm Delete</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="delete-modal-details">
+                <p>
+                    Are you sure you want to update this?
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="modal-actions">
+                <button class="btn" id="cancelUpdate">Cancel</button>
+                <button class="btn btn-danger" id="confirmUpdate">update</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script/admin2.js"></script>
+</body>
 </html>

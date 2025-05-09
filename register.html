@@ -11,6 +11,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <script src="script/register.js" type="module"></script>
   </head>
   <body>
     <div class="register">
@@ -18,18 +19,37 @@
         <h1>Register</h1>
         <form>
           <div class="form-group">
+            <label for="name">Username:</label>
+            <input type="text" id="name" name="name" pattern="[A-Za-z0-9 ]{6,20}"
+                   title="user name must contain only letters and numbers" required>
+          </div>
+          <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" required />
+            <input type="email" id="email" required name="email"/>
+            <div id="email-found">email already exist</div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password" id="password" required />
           </div>
           <div class="form-group">
+            <label for="confirm-password">confirm password</label>
+            <input type="password" id="confirm-password" name="password"
+                   pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                   title="Password must be at least 8 characters, include at least one letter and one number.">
+            <div id="password-error">password don't match</div>
+
+          </div>
+            <label>please choose account type</label>
+            <input type="radio" name="role" id="seller" value="seller">
+            <label for="seller">Seller</label>
+            <input type="radio" name="role" id="customer" checked value="customer">
+            <label for="customer">Customer</label>
+          <div class="form-group">
             <button type="submit" class="btn btn-primary">Register</button>
           </div>
           <div class="form-footer">
-            <p>Already have an account? <a href="#">Login</a></p>
+            <p>Already have an account? <a href="login.html">Login</a></p>
           </div>
         </form>
       </div>
