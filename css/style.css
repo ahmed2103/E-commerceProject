@@ -2170,3 +2170,9 @@ table tr:hover {
     font-size: 14px;
     margin-top: 10px;
 }
+.orderRow,.productRow,.userRow{
+    display: none;
+}
+#prev,#next{
+  display: none;
+}

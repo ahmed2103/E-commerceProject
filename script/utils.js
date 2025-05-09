@@ -8,8 +8,8 @@ const display = (arr) => arr.forEach(element => element.style.display = 'block')
 const hide = (arr) => arr.forEach(element => element.style.display = 'none');
 
 const truncate = (elementBody, row) => {
-    const existingOrderRows = [...elementBody.querySelectorAll(row)].slice(1);
-    existingOrderRows.forEach(row => row.remove());
+    const existingRows = [...elementBody.querySelectorAll(row)].slice(1);
+    existingRows.forEach(row => row.remove());
 }
 const instancesGetter = async(modelStr) => {
     const res = await fetch(`http://localhost:3000/${modelStr}`);
@@ -19,36 +19,64 @@ const partitioner = (list, pageNum, pageSize) => {
     return list.slice((pageNum - 1) * pageSize, pageNum * pageSize);
 }
 
-const rowsCreator = (models, itemToClone,bodyElement, objSpecific,classesList) => {
+const userRowsCreator = (models, itemToClone,bodyElement) => {
     models.forEach(model => {
         const newRow = itemToClone.cloneNode(true);
-        newRow.querySelector('span').textContent = model.id;
-        newRow.querySelector(classesList[0]).value = model.name;
-        newRow.querySelector(classesList[1]).value = model[objSpecific];
+        newRow.setAttribute('id', model.id);
+        const cellList= newRow.querySelectorAll('td');
+        console.log(model.role);
+        cellList[0].textContent = model.id;
+        cellList[1].textContent = model.name;
+        cellList[2].textContent = model.email;
+        cellList[3].querySelector('.roleMod').value = model.role;
         newRow.style.display = 'table-row';
         bodyElement.appendChild(newRow);
     });
-    if (objSpecific==='role') { //this means that the object is a user
         const newRow = itemToClone.cloneNode(true);
-        newRow.removeChild(newRow.getElementsByTagName('td')[3]);
-        newRow.querySelector('span').textContent = 'New';
+        console.log(newRow);
+        newRow.getElementsByTagName('td')[4].innerHTML = '';
+        newRow.querySelectorAll('td')[0].textContent = 'New';
+        const newText = document.createElement('input');
+        newText.setAttribute('type', 'text');
+        newText.setAttribute('class', 'newUserName');
+        newText.className = 'userName';
+        newRow.querySelectorAll('td')[1].appendChild(newText);
+        const newBtn = document.createElement('button');
+        newBtn.innerHTML = '<i class="fas fa-plus"></i>';
+        newBtn.id = 'userAdd'
+        newRow.getElementsByTagName('td')[4].appendChild(newBtn);
         newRow.style.display = 'table-row';
         bodyElement.appendChild(newRow);
-    }
+}
+const productRowsCreator = (models, itemToClone,bodyElement, objSpecific,classesList) => {
+    models.forEach(model => {
+        const newRow = itemToClone.cloneNode(true);
+        newRow.setAttribute('id', model.id);
+        const cellList= newRow.querySelectorAll('td');
+        cellList[0].textContent = model.id;
+        cellList[1].textContent = model.name;
+        cellList[2].querySelector('.statusModification').value = model.status;
+        cellList[3].textContent = model.category;
+        newRow.style.display = 'table-row';
+        bodyElement.appendChild(newRow);
+    });
+
 }
 const orderRowsCreator = (orderList, orderBody,rowForClone) => {
     orderList.forEach(order => {
         const newOrderRow = rowForClone.cloneNode(true);
-        newOrderRow.querySelector('span').textContent = order.id;
-        let orderDetailString = ``
+        newOrderRow.setAttribute('id', order.id);
+        const cellList= newOrderRow.querySelectorAll('td');
+        cellList[0].textContent = order.id;
+        cellList[1].textContent = order.customerId;
+        cellList[2].querySelector('.orderState').value = order.status;
 
+        let orderDetailString = ``
         order.products.forEach(product => {
             orderDetailString += `product id: ${product.productId}\tquantity: ${product.quantity}\n`;
         });
-        console.log(orderDetailString);
-        newOrderRow.querySelector('pre').textContent = orderDetailString;
-        newOrderRow.querySelector('.orderState').value = order.status;
-        newOrderRow.querySelector('.orderDate').textContent = order.orderDate;
+        cellList[3].querySelector('pre').textContent = orderDetailString;
+        cellList[4].textContent = order.orderDate;
         newOrderRow.style.display = 'table-row';
         orderBody.appendChild(newOrderRow);
     });
@@ -75,4 +103,4 @@ const productCardCreator = (productList, productCard, productGrid, productModal)
     }
 }
 
-export {partitioner, instancesGetter, storeInSession, display, truncate, rowsCreator, orderRowsCreator, hide, productCardCreator};
+export {partitioner, instancesGetter, storeInSession, display, truncate, userRowsCreator, orderRowsCreator, hide, productCardCreator, productRowsCreator};
