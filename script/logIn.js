@@ -27,7 +27,10 @@ window.addEventListener('load', () => {
 
                 localStorage.setItem('user', JSON.stringify(user));
                 if(user.role === 'customer') {
-                    window.location.href = `index.html`;
+                    window.location.href = `./index.html`;
+                }
+                else if(user.role === 'admin') {
+                    window.location.href = `./admin_dashboard.html`;
                 }
             })
             .catch(err => {
