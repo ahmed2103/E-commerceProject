@@ -310,20 +310,20 @@
     {
       "userId": "1",
       "products": [
-        { "productId": 1, "quantity": 1 }
+        { "productId": "1", "quantity": 1 }
       ]
     },
     {
       "userId": "2",
       "products": [
-        { "productId": 3, "quantity": 2 }
+        { "productId": "3", "quantity": 2 }
       ]
     },
     {
       "userId": "3",
       "products": [
-        { "productId": 2, "quantity": 1 },
-        { "productId": 3, "quantity": 1 }
+        { "productId": "2", "quantity": 1 },
+        { "productId": "3", "quantity": 1 }
       ]
     }
   ]

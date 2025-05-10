@@ -7,8 +7,6 @@
     <list default="true" id="360e6571-0551-4c63-83f7-63fe6180544b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +73,7 @@
       <recent name="$PROJECT_DIR$/script" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.login.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration name="admin_dashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/admin_dashboard.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -85,19 +83,19 @@
     <configuration name="login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/login.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="profile.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/profile.html" useBuiltInWebServerPort="true">
+    <configuration name="seller_dashboard.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/seller_dashboard.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="seller_dashboard.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/seller_dashboard.html" useBuiltInWebServerPort="true">
+    <configuration name="logIn.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/script/logIn.js" working-dir="$PROJECT_DIR$/script">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.login.html" />
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="Node.js.logIn.js" />
+        <item itemvalue="JavaScript Debug.login.html" />
         <item itemvalue="JavaScript Debug.seller_dashboard.html (1)" />
         <item itemvalue="JavaScript Debug.admin_dashboard.html" />
-        <item itemvalue="JavaScript Debug.profile.html" />
       </list>
     </recent_temporary>
   </component>
@@ -138,7 +136,7 @@
       <workItem from="1746688985423" duration="26223000" />
       <workItem from="1746778213362" duration="21104000" />
       <workItem from="1746806090017" duration="16676000" />
-      <workItem from="1746844057236" duration="5060000" />
+      <workItem from="1746844057236" duration="5764000" />
     </task>
     <servers />
   </component>
