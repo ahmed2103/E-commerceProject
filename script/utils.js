@@ -64,32 +64,40 @@ const productRowsCreator = (models, itemToClone,bodyElement, objSpecific,classes
 
 }
 const orderRowsCreator = async (orderList, orderBody, rowForClone) => {
-    const users = await instancesGetter('users');
-    const products = await instancesGetter('products');
+    const [users, products] = await Promise.all([
+        instancesGetter('users'),
+        instancesGetter('products')
+    ]);
 
     for (const order of orderList) {
-        const newOrderRow = rowForClone.cloneNode(true);
-        newOrderRow.setAttribute('id', order.id);
-        const cellList = newOrderRow.querySelectorAll('td');
+        const newRow = rowForClone.cloneNode(true);
+        newRow.setAttribute('id', order.id);
+        const cells = newRow.querySelectorAll('td');
 
         const customer = users.find(user => user.id === order.customerId);
-        cellList[0].textContent = customer ? customer.name : 'Unknown';
+        cells[0].textContent = customer?.name || 'Unknown';
 
-        cellList[1].querySelector('.orderState').value = order.status;
+        const statusSelect = cells[1].querySelector('.orderState');
+        if (statusSelect) statusSelect.value = order.status;
 
-        let orderDetailString = '';
-        for (const product of order.products) {
-            const foundProduct = products.find(p => p.id === product.productId);
-            orderDetailString += `Product: ${foundProduct?.name || 'N/A'}\tQuantity: ${product.quantity}\n`;
-        }
+        const orderDetails = order.products.map(product => {
+            const prod = products.find(p => p.id === product.productId);
+            const name = prod?.name || 'N/A';
+            return `Product: ${name}\tQuantity: ${product.quantity}`;
+        }).join('\n');
 
-        cellList[2].querySelector('pre').textContent = orderDetailString.trim();
-        cellList[3].textContent = order.orderDate;
+        const detailsPre = cells[2].querySelector('pre');
+        if (detailsPre) detailsPre.textContent = orderDetails;
 
-        newOrderRow.style.display = 'table-row';
-        orderBody.appendChild(newOrderRow);
+        cells[3].textContent = order.orderDate || 'N/A';
+
+        newRow.style.display = 'table-row';
+        orderBody.appendChild(newRow);
     }
 };
+
+
+
 
 
 const productCardCreator = (productList, productCard, productGrid, productModal) => {

@@ -115,72 +115,45 @@
   ],
   "products": [
     {
-      "id": "1",
-      "sellerId": "3",
-      "name": "Wireless Headphones",
-      "price": 99.99,
-      "category": "Electronics",
+      "id": 1,
+      "name": "iPhone 14 Pro Max",
+      "price": 2500,
+      "description": "Latest Apple flagship phone",
+      "category": "Mobiles",
       "status": "approved"
     },
     {
-      "id": "2",
-      "sellerId": "3",
-      "name": "Smart Mobile",
-      "price": 499.99,
-      "category": "Electronics",
+      "id": 2,
+      "name": "Samsung S22 Ultra",
+      "price": 2300,
+      "description": "Samsung's premium smartphone",
+      "category": "Mobiles",
       "status": "approved"
     },
     {
-      "id": "3",
-      "sellerId": "7",
-      "name": "Laptop Stand",
-      "price": 29.99,
-      "category": "Accessories",
+      "id": 3,
+      "name": "OnePlus 10 Pro",
+      "price": 1800,
+      "description": "High-performance Android phone",
+      "category": "Mobiles",
       "status": "approved"
     },
     {
-      "id": "4",
-      "sellerId": "7",
-      "name": "Wireless Mouse",
-      "price": 24.99,
-      "category": "Computer Peripherals",
-      "status": "rejected"
-    },
-    {
-      "id": "8",
-      "sellerId": "7",
-      "name": "Mechanical Keyboard",
-      "price": 129.99,
-      "category": "Computer Peripherals",
-      "status": "pending"
-    },
-    {
-      "id": "9",
-      "sellerId": "3",
-      "name": "Wireless Charger22",
-      "price": "4.29",
-      "category": "1",
-      "status": "pending",
-      "description": "this watch is the best watch in world22222",
-      "imageData": "data:image/webp;base64,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"
-    },
-    {
-      "id": "10",
-      "sellerId": "7",
-      "name": "External SSD",
-      "price": 159.99,
-      "category": "Storage",
+      "id": 4,
+      "name": "Apple MacBook Pro M2",
+      "price": 3500,
+      "description": "Powerful Apple laptop with M2 chip",
+      "category": "Laptops",
       "status": "approved"
+
     },
     {
-      "id": "11",
-      "sellerId": "3",
-      "name": "Acer",
-      "price": "1000",
-      "category": "2",
-      "description": "this laptop is the best laptop",
-      "status": "pending",
-      "imageData": "data:image/webp;base64,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"
+      "id": 5,
+      "name": "Dell XPS 13",
+      "price": 3200,
+      "description": "Compact and high-performance laptop",
+      "category": "Laptops",
+      "status": "approved"
     }
   ],
   "orders": [
@@ -336,217 +309,22 @@
   "carts": [
     {
       "userId": "1",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Wireless Headphones",
-          "price": 99.99,
-          "quantity": 1
-        }
-      ],
-      "totalItems": 1,
-      "totalPrice": 99.99,
-      "id": "c3c1"
+      "products": [
+        { "productId": 1, "quantity": 1 }
+      ]
     },
     {
       "userId": "2",
-      "items": [
-        {
-          "productId": "2",
-          "name": "Smart mobile",
-          "price": 499.99,
-          "quantity": 1
-        }
-      ],
-      "totalItems": 1,
-      "totalPrice": 499.99,
-      "id": "a3e8"
+      "products": [
+        { "productId": 3, "quantity": 2 }
+      ]
     },
     {
       "userId": "3",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Wireless Headphones",
-          "price": 99.99,
-          "quantity": 2
-        }
-      ],
-      "totalItems": 2,
-      "totalPrice": 199.98,
-      "id": "481a"
-    },
-    {
-      "userId": "4",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Wireless Headphones",
-          "price": 99.99,
-          "quantity": 1
-        },
-        {
-          "productId": "2",
-          "name": "Smart mobile",
-          "price": 499.99,
-          "quantity": 1
-        }
-      ],
-      "totalItems": 2,
-      "totalPrice": 599.98,
-      "id": "61f9"
-    },
-    {
-      "userId": null,
-      "items": [
-        {
-          "productId": "2",
-          "name": "Smart mobile",
-          "price": 499.99,
-          "quantity": 2
-        }
-      ],
-      "totalItems": 2,
-      "totalPrice": 999.98,
-      "id": "043f"
-    },
-    {
-      "userId": "6",
-      "items": [],
-      "totalItems": 0,
-      "totalPrice": 0,
-      "id": "96ff"
-    },
-    {
-      "userId": "7",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Wireless Headphones",
-          "price": 99.99,
-          "quantity": 3
-        }
-      ],
-      "totalItems": 3,
-      "totalPrice": 299.97,
-      "id": "0a58"
-    },
-    {
-      "userId": "8",
-      "items": [
-        {
-          "productId": "2",
-          "name": "Smart mobile",
-          "price": 499.99,
-          "quantity": 1
-        }
-      ],
-      "totalItems": 1,
-      "totalPrice": 499.99,
-      "id": "b4df"
-    },
-    {
-      "userId": "9",
-      "items": [],
-      "totalItems": 0,
-      "totalPrice": 0,
-      "id": "a082"
-    },
-    {
-      "userId": null,
-      "items": [
-        {
-          "productId": "1",
-          "name": "Wireless Headphones",
-          "price": 99.99,
-          "quantity": 1
-        },
-        {
-          "productId": "2",
-          "name": "Smart mobile",
-          "price": 499.99,
-          "quantity": 1
-        }
-      ],
-      "totalItems": 2,
-      "totalPrice": 599.98,
-      "id": "7c48"
-    },
-    {
-      "userId": "11",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Wireless Headphones",
-          "price": 99.99,
-          "quantity": 2
-        }
-      ],
-      "totalItems": 2,
-      "totalPrice": 199.98,
-      "id": "1094"
-    },
-    {
-      "userId": "12",
-      "items": [],
-      "totalItems": 0,
-      "totalPrice": 0,
-      "id": "7173"
-    },
-    {
-      "userId": "13",
-      "items": [
-        {
-          "productId": "2",
-          "name": "Smart mobile",
-          "price": 499.99,
-          "quantity": 1
-        }
-      ],
-      "totalItems": 1,
-      "totalPrice": 499.99,
-      "id": "7ebb"
-    },
-    {
-      "userId": "14",
-      "items": [
-        {
-          "productId": "1",
-          "name": "Wireless Headphones",
-          "price": 99.99,
-          "quantity": 1
-        }
-      ],
-      "totalItems": 1,
-      "totalPrice": 99.99,
-      "id": "6c01"
-    },
-    {
-      "userId": "15",
-      "items": [
-        {
-          "productId": "2",
-          "name": "Smart mobile",
-          "price": 499.99,
-          "quantity": 1
-        },
-        {
-          "productId": "1",
-          "name": "Wireless Headphones",
-          "price": 99.99,
-          "quantity": 1
-        }
-      ],
-      "totalItems": 2,
-      "totalPrice": 599.98,
-      "id": "6157"
-    },
-    {
-      "userId": null,
-      "items": [],
-      "totalItems": 0,
-      "totalPrice": 0,
-      "id": "1875"
+      "products": [
+        { "productId": 2, "quantity": 1 },
+        { "productId": 3, "quantity": 1 }
+      ]
     }
   ]
 }

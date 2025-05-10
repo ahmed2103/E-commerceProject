@@ -7,10 +7,8 @@
     <list default="true" id="360e6571-0551-4c63-83f7-63fe6180544b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/logIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/logIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/seller.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/seller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seller_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/seller_dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,37 +33,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript Debug.account.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.admin.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.admin_dashboard.html (1).executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.admin_dashboard.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.logI.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.logIn.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.login.html (1).executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.login.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.profile.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.register.html (1).executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.register.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.seller_dashboard.html (1).executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.seller_dashboard.html.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Node.js.logIn.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/hasona/ITI_tasks/E-commerceProject/script&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/hasona/.local/share/JetBrains/Toolbox/apps/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "JavaScript Debug.account.html.executor": "Run",
+    "JavaScript Debug.admin.html.executor": "Run",
+    "JavaScript Debug.admin_dashboard.html (1).executor": "Run",
+    "JavaScript Debug.admin_dashboard.html.executor": "Run",
+    "JavaScript Debug.index.html.executor": "Run",
+    "JavaScript Debug.logI.html.executor": "Run",
+    "JavaScript Debug.logIn.html.executor": "Run",
+    "JavaScript Debug.login.html (1).executor": "Run",
+    "JavaScript Debug.login.html.executor": "Run",
+    "JavaScript Debug.profile.html.executor": "Run",
+    "JavaScript Debug.register.html (1).executor": "Run",
+    "JavaScript Debug.register.html.executor": "Run",
+    "JavaScript Debug.seller_dashboard.html (1).executor": "Run",
+    "JavaScript Debug.seller_dashboard.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.logIn.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/hasona/ITI_tasks/E-commerceProject/script",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/home/hasona/.local/share/JetBrains/Toolbox/apps/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/script" />
@@ -76,7 +75,7 @@
       <recent name="$PROJECT_DIR$/script" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="JavaScript Debug.login.html">
     <configuration name="admin_dashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/admin_dashboard.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -94,8 +93,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.login.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.seller_dashboard.html (1)" />
         <item itemvalue="JavaScript Debug.admin_dashboard.html" />
         <item itemvalue="JavaScript Debug.profile.html" />
@@ -138,7 +137,8 @@
       <workItem from="1746620789017" duration="13310000" />
       <workItem from="1746688985423" duration="26223000" />
       <workItem from="1746778213362" duration="21104000" />
-      <workItem from="1746806090017" duration="14607000" />
+      <workItem from="1746806090017" duration="16676000" />
+      <workItem from="1746844057236" duration="5060000" />
     </task>
     <servers />
   </component>
