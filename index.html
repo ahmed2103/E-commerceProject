@@ -65,8 +65,17 @@
                   ></a>
                   <div class="dropdown-menu" id="account-dropdown">
                     <ul id="account-menu">
-                      <li><a href="#" id="login-link">Login</a></li>
-                      <li><a href="#" id="register-link">Register</a></li>
+                      <li>
+                        <a href="./login.html">
+                          <button class="btn btn-primary">Login</button>
+                        </a>
+                      </li>
+                      <!-- make  href="./account.html" dynamic if user is anonymous route to login if not route to profile if user is admin route to admin dashboard-->
+                      <li>
+                        <a href="./account.html"
+                          ><i class="fas fa-user"></i> My Account
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 </li>
@@ -100,11 +109,8 @@
                 >Categories <i class="fas fa-chevron-down"></i
               ></a>
               <ul class="mobile-dropdown-menu">
-                <li><a href="#" data-category="electronics">Electronics</a></li>
-                <li><a href="#" data-category="clothing">Clothing</a></li>
-                <li><a href="#" data-category="home">Home & Kitchen</a></li>
-                <li><a href="#" data-category="books">Books</a></li>
-                <li><a href="#" data-category="toys">Toys</a></li>
+                <li><a href="#" data-category="laptops">Laptops</a></li>
+                <li><a href="#" data-category="phones">Phones</a></li>
               </ul>
             </li>
             <li>
