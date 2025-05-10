@@ -4,7 +4,7 @@ window.addEventListener('load', async () => {
     const sellerName = document.querySelector('#seller-name');
     const productDescription = document.querySelector('#product-description');
     const productImage = document.querySelector('#product-img');
-    const addToCartBtn = document.querySelector('.btn .btn-primary');
+    const addToCartBtn = document.querySelector('.btn-primary');
     const qtyInput = document.querySelector('#qty');
     const commentInput = document.querySelector('#comment-input');
     const commentBtn = document.querySelector('#add-comment');
@@ -80,4 +80,40 @@ window.addEventListener('load', async () => {
         `;
         reviewsList.appendChild(commentItem);
     }
+
+    addToCartBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const quantity = parseInt(qtyInput.value);
+        if (isNaN(quantity) || quantity <= 0) {
+            alert('Please enter a valid quantity');
+            return;
+        }
+
+        const user = JSON.parse(localStorage.getItem('user'));
+        const carts = await (await fetch('http://localhost:3000/carts')).json();
+        const cart = carts.find(c => c.userId === user.id);
+
+        if (cart) {
+            const existingProduct = cart.products.find(p => p.productId === productId);
+            if (existingProduct) {
+                existingProduct.quantity += quantity;
+            } else {
+                cart.products.push({ productId, quantity });
+            }
+            await fetch(`http://localhost:3000/carts/${cart.id}`, {
+                method: 'PUT',
+                body: JSON.stringify(cart)
+            });
+        } else {
+            const newCart = {
+                userId: user.id,
+                products: [{ productId, quantity }]
+            };
+            await fetch('http://localhost:3000/carts', {
+                method: 'POST',
+                body: JSON.stringify(newCart)
+            });
+        }
+
+    })
 });

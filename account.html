@@ -1,117 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile</title>
-    <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/responsive.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div class="account">
-      <!-- Sidebar -->
-      <aside class="account-sidebar">
-        <!-- User Info -->
-        <div class="account-user">
-          <div class="account-avatar">
-            <img src="assets/avatar.jpg" alt="User Avatar" />
-          </div>
-          <div class="account-username">John Doe</div>
-          <div class="account-email">john@example.com</div>
-        </div>
-
-        <!-- Navigation -->
-        <nav class="account-nav">
-          <ul>
-            <li>
-              <a href="#" class="active"><i class="fas fa-user"></i>Profile</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-map-marker-alt"></i>Addresses</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-box"></i>Orders</a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-
-      <!-- Main Content -->
-      <main class="account-content">
-        <!-- Profile Section -->
-        <section class="account-section">
-          <div class="account-section-title">
-            <h2>Profile Information</h2>
-            <button>Edit</button>
-          </div>
-          <div class="account-info">
-            <div class="account-info-item">
-              <div class="account-info-label">Full Name</div>
-              <div class="account-info-value">John Doe</div>
-            </div>
-            <div class="account-info-item">
-              <div class="account-info-label">Email</div>
-              <div class="account-info-value">john@example.com</div>
-            </div>
-            <div class="account-info-item">
-              <div class="account-info-label">Phone</div>
-              <div class="account-info-value">+20123456789</div>
-            </div>
-            <div class="account-info-item">
-              <div class="account-info-label">Gender</div>
-              <div class="account-info-value">Male</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Orders Section -->
-        <section class="account-section account-orders">
-          <div class="account-section-title">
-            <h2>Order History</h2>
-          </div>
-
-          <!-- Single Order -->
-          <div class="account-order">
-            <div class="account-order-header">
-              <div>
-                <div class="account-order-id">Order #1234</div>
-                <div class="account-order-date">2025-05-01</div>
-              </div>
-              <div class="account-order-status status-shipped">Shipped</div>
-            </div>
-
-            <div class="account-order-items">
-              <div class="account-order-item">
-                <div class="account-order-item-img">
-                  <img src="assets/product1.jpg" alt="Product" />
-                </div>
-                <div class="account-order-item-info">
-                  <div class="account-order-item-title">Product Name</div>
-                  <div class="account-order-item-price">
-                    <span>Qty: 2</span>
-                    <span>$40.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="account-order-total">
-              <span>Total:</span>
-              <span>$80.00</span>
-            </div>
-
-            <div class="account-order-actions">
-              <button>Track Order</button>
-              <button>Invoice</button>
-            </div>
-          </div>
-        </section>
-      </main>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile</title>
+  <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/responsive.css" />
+  <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <script src="./script/account.js" type="module" defer></script>
+</head>
+<body>
+<div class="account">
+  <!-- Sidebar -->
+  <aside class="account-sidebar">
+    <!-- User Info -->
+    <div class="account-user">
+      <div class="account-avatar">
+        <img src="user.jpg" alt="User Avatar" id="user-avatar" />
+      </div>
+      <div class="account-username" id="sidebar-username">John Doe</div>
+      <div class="account-email" id="sidebar-email">john@example.com</div>
     </div>
-  </body>
+
+    <!-- Navigation -->
+    <nav class="account-nav">
+      <ul>
+        <li>
+          <a href="#profile" class="active" id="profile-link"><i class="fas fa-user"></i>Profile</a>
+        </li>
+        <li>
+          <a href="#dashboard" id="dashboard-link"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+        </li>
+        <li>
+          <a href="#orders" id="orders-link"><i class="fas fa-box"></i>Orders</a>
+        </li>
+        <li>
+          <a href="index.html" id="home-link"><i class="fas fa-home"></i>Back to Shop</a>
+        </li>
+        <li>
+          <a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i>Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="account-content">
+    <!-- Profile Section -->
+    <section class="account-section" id="profile-section">
+      <div class="account-section-title">
+        <h2>Profile Information</h2>
+        <button id="edit-profile-btn">Edit</button>
+      </div>
+      <div class="account-info" id="profile-info-display">
+        <div class="account-info-item">
+          <div class="account-info-label">Full Name</div>
+          <div class="account-info-value" id="profile-name">John Doe</div>
+        </div>
+        <div class="account-info-item">
+          <div class="account-info-label">Email</div>
+          <div class="account-info-value" id="profile-email">john@example.com</div>
+        </div>
+        <div class="account-info-item">
+          <div class="account-info-label">Phone</div>
+          <div class="account-info-value" id="profile-phone">+20123456789</div>
+        </div>
+        <div class="account-info-item">
+          <div class="account-info-label">Gender</div>
+          <div class="account-info-value" id="profile-gender">Male</div>
+        </div>
+      </div>
+
+      <!-- Edit Profile Form (Initially Hidden) -->
+      <form class="account-edit-form" id="edit-profile-form" style="display: none;">
+        <div class="form-group">
+          <label for="edit-name">Full Name</label>
+          <input type="text" id="edit-name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-email">Email</label>
+          <input type="email" id="edit-email" name="email" readonly>
+        </div>
+        <div class="form-group">
+          <label for="edit-phone">Phone</label>
+          <input type="tel" id="edit-phone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="edit-gender">Gender</label>
+          <select id="edit-gender" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="cancel-edit-btn">Cancel</button>
+          <button type="submit" id="save-profile-btn">Save Changes</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Dashboard Section (Initially Hidden) -->
+    <section class="account-section" id="dashboard-section" style="display: none;">
+      <div class="account-section-title">
+        <h2>Dashboard</h2>
+      </div>
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
+          <div class="stat-value" id="total-orders">0</div>
+          <div class="stat-label">Total Orders</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-box"></i></div>
+          <div class="stat-value" id="pending-orders">0</div>
+          <div class="stat-label">Pending Orders</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-truck"></i></div>
+          <div class="stat-value" id="shipped-orders">0</div>
+          <div class="stat-label">Shipped Orders</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+          <div class="stat-value" id="completed-orders">0</div>
+          <div class="stat-label">Completed Orders</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Orders Section -->
+    <section class="account-section account-orders" id="orders-section" style="display: none;">
+      <div class="account-section-title">
+        <h2>Order History</h2>
+      </div>
+
+      <div id="orders-container">
+        <!-- Example Order Template -->
+        <div class="account-order" style="display: none;" id="order-template">
+          <div class="account-order-header">
+            <div>
+              <div class="account-order-id">Order #<span class="order-id">1234</span></div>
+              <div class="account-order-date"><span class="order-date">2025-05-01</span></div>
+            </div>
+            <div class="account-order-status status-pending"><span class="order-status">Pending</span></div>
+          </div>
+
+          <div class="account-order-items">
+            <!-- Order items content will be added dynamically here -->
+          </div>
+
+          <div class="account-order-total">
+            <span>Total:</span>
+            <span class="order-total">$0.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="no-orders-message" style="display: none;">
+        <p>You haven't placed any orders yet.</p>
+        <a href="index.html" class="btn">Start Shopping</a>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
 </html>

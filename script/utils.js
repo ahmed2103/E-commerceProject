@@ -139,7 +139,7 @@ const confirmUpdate = () => {
     })
 }
 const confirmDelete = () => {
-    return new Promise((resolve) => {
+    return new Promise( (resolve) => {
         const modal = document.getElementById('deleteModal');
         console.log('from modal', modal);
         const cancelBtn = document.getElementById('cancelDelete');
@@ -156,8 +156,10 @@ const confirmDelete = () => {
     })
 }
 
-const addProductCart = async (target) => {
-    if (target.classList.contains('add-to-cart')) {
+const   addProductCart = async (target,e) => {
+    if (target.classList.contains('add-to-cart'))
+    {
+        e.stopPropagation();
         const productCard = target.closest('.product-card');
         const productId = productCard.getAttribute('id');
         const quantity =  1;

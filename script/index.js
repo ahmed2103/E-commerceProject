@@ -14,35 +14,45 @@ window.addEventListener('load', async (e) => {
     const clearCartBtn = document.getElementById('clear-cart');
     const productsGrid = document.querySelector('.products-grid');
     const sortList = document.getElementById('sort');
-    const checkOutBtn = document.querySelector('.add-to-cart');
+    const checkOutBtn = document.getElementById('checkout-btn');
     const BuyBtn = document.querySelector('.buy-now');
+    const allAnchor = document.querySelector('#all');
+    const laptopAnchors = document.querySelectorAll('#laptop');
+    const mobileAnchor = document.querySelector('#mobile');
+    const accountAnchor = document.querySelector('#account-link');
+    const loginBtn = document.querySelector('#account-menu > li:nth-child(1) > a > button');
 
-
+    if(localStorage.getItem('user')) loginBtn.style.display = 'none';
 
     const allProducts = (await instancesGetter('products')).filter(p => p.status === 'approved');
 
-    productCardCreator(allProducts,productCard,productGrid,productModal);
+    productCardCreator(allProducts, productCard, productGrid, productModal);
+
     searchInput.addEventListener('blur', async () => {
         const searchValue = searchInput.value;
         if (!searchValue) {
-            productGrid.innerHTML=''
-            const allProducts = await instancesGetter('products');
+            productGrid.innerHTML = '';
+            const allProducts = (await instancesGetter('products')).filter(p => p.status === 'approved');
             productCardCreator(allProducts, productCard, productGrid, productModal);
             return;
         }
-    })
-
+    });
 
     searchButton.addEventListener('click', async () => {
         productGrid.innerHTML = '';
         const searchValue = searchInput.value;
-        const allProducts = await instancesGetter('products');
+        const allProducts = (await instancesGetter('products')).filter(p => p.status === 'approved');
         const filteredProducts = allProducts.filter(product => product.name.toLowerCase().includes(searchValue.toLowerCase()));
         productCardCreator(filteredProducts, productCard, productGrid, productModal);
-    })
+    });
 
     cartIcon.addEventListener('click', async () => {
         const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            alert("Please login to view your cart");
+            return;
+        }
+
         const carts = await instancesGetter('carts');
         const products = await instancesGetter('products');
         const cart = carts.find(c => c.userId === user.id);
@@ -78,56 +88,64 @@ window.addEventListener('load', async (e) => {
     });
 
     productsGrid.addEventListener('click', async (e) => {
-        const target = e.target;
-        await addProductCart(target)
-    })
+        await addProductCart(e.target, e);
+    });
 
-     clearCartBtn.addEventListener('click',async () => {
-         const user = JSON.parse(localStorage.getItem('user'));
-         const carts = await instancesGetter('carts');
-         const cart = carts.find(c => c.userId === user.id);
+    clearCartBtn.addEventListener('click', async () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            alert("Please login to modify your cart");
+            return;
+        }
 
-         if (cart) {
-             cart.products = [];
-             await fetch(`http://localhost:3000/carts/${cart.id}`, {
-                 method: 'PUT',
-                 body: JSON.stringify(cart)
-             });
-         }
+        const carts = await instancesGetter('carts');
+        const cart = carts.find(c => c.userId === user.id);
 
-         cartItemsElement.innerHTML = '';
-         document.querySelector('#cart-total-price').textContent = '0$';
-     });
+        if (cart) {
+            cart.products = [];
+            await fetch(`http://localhost:3000/carts/${cart.id}`, {
+                method: 'PUT',
+                body: JSON.stringify(cart)
+            });
+        }
 
-    sortList.addEventListener('click', async () => {
+        cartItemsElement.innerHTML = '';
+        document.querySelector('#cart-total-price').textContent = '0$';
+    });
+
+    sortList.addEventListener('change', async () => { // Changed from 'click' to 'change'
         const sortValue = sortList.value;
         let sortedProducts = [...allProducts];
 
         switch (sortValue) {
             case('price-low-high'):
                 sortedProducts.sort((a, b) => a.price - b.price);
-                productsGrid.innerHTML = '';
-                productCardCreator(sortedProducts,productCard,productGrid,productModal);
                 break;
             case('price-high-low'):
                 sortedProducts.sort((a, b) => b.price - a.price);
-                productsGrid.innerHTML = '';
-                productCardCreator(sortedProducts,productCard,productGrid,productModal);
                 break;
             default:
-                productsGrid.innerHTML = '';
-                productCardCreator(sortedProducts,productCard,productGrid,productModal);
+                // Keep original order for other sort options
                 break;
         }
 
         productGrid.innerHTML = '';
         productCardCreator(sortedProducts, productCard, productGrid, productModal);
     });
-    checkOutBtn.addEventListener('click', async (e) => {
+
+    const checkoutBtn = document.getElementById('checkout-btn');
+    checkoutBtn.addEventListener('click', async (e) => {
         const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            alert("Please login to checkout");
+            return;
+        }
+
         const carts = await instancesGetter('carts');
         const cart = carts.find(c => c.userId === user.id);
-        if (!cart || cart.products.length === 0) return alert("Your cart is empty");
+        if (!cart || !cart.products || cart.products.length === 0) {
+            return;
+        }
 
         const products = await instancesGetter('products');
 
@@ -154,16 +172,82 @@ window.addEventListener('load', async (e) => {
             method: 'PUT',
             body: JSON.stringify({ ...cart, products: [] })
         });
+
+        cartModal.style.display = "none";
     });
 
+    if (allAnchor) {
+        allAnchor.addEventListener('click', async (e) => {
+            const allProducts = (await instancesGetter('products')).filter(p => p.status === 'approved');
+            productGrid.innerHTML = '';
+            productCardCreator(allProducts, productCard, productGrid, productModal);
+        });
+    }
 
+    laptopAnchors.forEach(anchor => {
+        anchor.addEventListener('click', async (e) => {
+            const allProducts = await instancesGetter('products');
+            const filteredProducts = allProducts.filter(product => product.category === 'Laptops' && product.status === 'approved');
+            productGrid.innerHTML = '';
+            productCardCreator(filteredProducts, productCard, productGrid, productModal);
+        });
+    });
 
-
+    if (mobileAnchor) {
+        mobileAnchor.addEventListener('click', async (e) => {
+            const allProducts = await instancesGetter('products');
+            const filteredProducts = allProducts.filter(product => product.category === 'Mobiles' && product.status === 'approved');
+            productGrid.innerHTML = '';
+            productCardCreator(filteredProducts, productCard, productGrid, productModal);
+        });
+    }
 
     closeModalBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             productModal.style.display = "none";
             cartModal.style.display = "none";
         });
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === productModal) {
+            productModal.style.display = "none";
+        }
+        if (e.target === cartModal) {
+            cartModal.style.display = "none";
+        }
+    });
+
+    // Update cart count
+    const updateCartCount = async () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) return;
+
+        const carts = await instancesGetter('carts');
+        const cart = carts.find(c => c.userId === user.id);
+
+        const cartCount = document.getElementById('cart-count');
+        if (cartCount) {
+            if (cart && cart.products) {
+                let count = 0;
+                cart.products.forEach(item => {
+                    count += item.quantity;
+                });
+                cartCount.textContent = count;
+            } else {
+                cartCount.textContent = '0';
+            }
+        }
+    };
+    accountAnchor.addEventListener('click', (e) => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            e.preventDefault();
+            window.location.href = './login.html';
+            return;
+        }
     })
-})
+
+    updateCartCount();
+    setInterval(updateCartCount, 30000); // Update every 30 seconds
+});

@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="360e6571-0551-4c63-83f7-63fe6180544b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/script/account.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/seller.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/seller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seller_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/seller_dashboard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,39 +40,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "JavaScript Debug.account.html.executor": "Run",
-    "JavaScript Debug.admin.html.executor": "Run",
-    "JavaScript Debug.admin_dashboard.html (1).executor": "Run",
-    "JavaScript Debug.admin_dashboard.html.executor": "Run",
-    "JavaScript Debug.index.html.executor": "Run",
-    "JavaScript Debug.logI.html.executor": "Run",
-    "JavaScript Debug.logIn.html.executor": "Run",
-    "JavaScript Debug.login.html (1).executor": "Run",
-    "JavaScript Debug.login.html.executor": "Run",
-    "JavaScript Debug.product.html.executor": "Run",
-    "JavaScript Debug.profile.html.executor": "Run",
-    "JavaScript Debug.register.html (1).executor": "Run",
-    "JavaScript Debug.register.html.executor": "Run",
-    "JavaScript Debug.seller_dashboard.html (1).executor": "Run",
-    "JavaScript Debug.seller_dashboard.html.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.logIn.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/hasona/ITI_tasks/E-commerceProject/script",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/home/hasona/.local/share/JetBrains/Toolbox/apps/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;JavaScript Debug.account.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.admin.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.admin_dashboard.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.admin_dashboard.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.logI.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.logIn.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.login.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.login.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.product.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.profile.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.register.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.register.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.seller_dashboard.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.seller_dashboard.html.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.logIn.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/hasona/ITI_tasks/E-commerceProject/script&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/hasona/.local/share/JetBrains/Toolbox/apps/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/script" />
@@ -77,8 +84,8 @@
       <recent name="$PROJECT_DIR$/script" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.login.html">
-    <configuration name="admin_dashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/admin_dashboard.html" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
+    <configuration name="account.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/account.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/index.html" useBuiltInWebServerPort="true">
@@ -95,11 +102,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.login.html" />
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.account.html" />
+        <item itemvalue="JavaScript Debug.login.html" />
         <item itemvalue="JavaScript Debug.product.html" />
         <item itemvalue="JavaScript Debug.seller_dashboard.html" />
-        <item itemvalue="JavaScript Debug.admin_dashboard.html" />
       </list>
     </recent_temporary>
   </component>
@@ -146,6 +153,8 @@
       <workItem from="1746861674901" duration="6739000" />
       <workItem from="1746868563412" duration="19000" />
       <workItem from="1746875829275" duration="7720000" />
+      <workItem from="1746883574811" duration="2265000" />
+      <workItem from="1746887985324" duration="12848000" />
     </task>
     <servers />
   </component>

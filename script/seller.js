@@ -290,7 +290,6 @@ window.addEventListener('load', async () => {
         const imageInput = document.getElementById('image');
 
         if (name === '' || price === '' || category === '0') {
-            alert('Please fill in all required fields');
             return;
         }
 

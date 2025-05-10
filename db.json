@@ -5,7 +5,9 @@
       "role": "admin",
       "name": "Admin User",
       "email": "admin@example.com",
-      "password": "admin123"
+      "password": "admin123",
+      "phone": "01139490394",
+      "gender": "Male"
     },
     {
       "id": "2",
@@ -222,6 +224,24 @@
       "productId": "6",
       "quantity": 1,
       "date": "2025-05-10T09:02:27.673Z"
+    },
+    {
+      "id": "abe8",
+      "customerId": "1",
+      "status": "pending",
+      "sellerId": "3",
+      "productId": "6",
+      "quantity": 12,
+      "date": "2025-05-10T15:09:13.189Z"
+    },
+    {
+      "id": "fb0c",
+      "customerId": "1",
+      "status": "pending",
+      "sellerId": "3",
+      "productId": "3",
+      "quantity": 1,
+      "date": "2025-05-10T15:09:13.189Z"
     }
   ],
   "carts": [
@@ -236,6 +256,16 @@
         {
           "productId": "6",
           "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "5735",
+      "userId": "1",
+      "products": [
+        {
+          "productId": "3",
+          "quantity": 2
         }
       ]
     }
