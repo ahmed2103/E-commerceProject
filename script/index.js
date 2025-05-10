@@ -14,7 +14,8 @@ window.addEventListener('load', async (e) => {
     const clearCartBtn = document.getElementById('clear-cart');
     const productsGrid = document.querySelector('.products-grid');
     const sortList = document.getElementById('sort');
-    const checkOutBtn = document.getElementById('checkout-btn');
+    const checkOutBtn = document.querySelector('.add-to-cart');
+    const BuyBtn = document.querySelector('.buy-now');
 
 
 
@@ -154,6 +155,7 @@ window.addEventListener('load', async (e) => {
             body: JSON.stringify({ ...cart, products: [] })
         });
     });
+
 
 
 

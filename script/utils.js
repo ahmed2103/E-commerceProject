@@ -94,25 +94,32 @@ const orderRowsCreator = async (orderList, orderBody, rowForClone) => {
 
 
 const productCardCreator = (productList, productCard, productGrid, productModal) => {
+    const modalTitle = productModal.querySelector('#product-modal-title');
+    const modalPrice = productModal.querySelector('#product-modal-price');
+    const modalDescription = productModal.querySelector('#product-modal-description');
+    const modalImage = productModal.querySelector('#product-modal-img');
+    const modalClose = productModal.querySelector('#modal-close');
+
     for (let product of productList) {
         const newProductCard = productCard.cloneNode(true);
-
         newProductCard.setAttribute('id', product.id);
+
         newProductCard.querySelector('.product-title').textContent = product.name;
         newProductCard.querySelector('.current-price').textContent = product.price;
         newProductCard.querySelector('img').src = product.imageData;
         newProductCard.querySelector('img').alt = product.name;
         newProductCard.style.display = 'block';
+
         newProductCard.addEventListener('click', () => {
-            productModal.style.display = 'block';
-            productModal.querySelector('#product-modal-title').textContent = product.name;
-            productModal.querySelector('#product-modal-price').textContent = product.price;
-            productModal.querySelector('#product-modal-description').textContent = product.description;
-            productModal.querySelector('#product-modal-img').src = product.imageData;
+            window.location.href = 'product.html?id=' + product.id;
         })
         productGrid.appendChild(newProductCard);
     }
-}
+
+
+};
+
+
 
 const confirmUpdate = () => {
     return new Promise((resolve) => {
