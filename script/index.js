@@ -113,7 +113,7 @@ window.addEventListener('load', async (e) => {
         document.querySelector('#cart-total-price').textContent = '0$';
     });
 
-    sortList.addEventListener('change', async () => { // Changed from 'click' to 'change'
+    sortList.addEventListener('change', async () => {
         const sortValue = sortList.value;
         let sortedProducts = [...allProducts];
 
@@ -125,7 +125,6 @@ window.addEventListener('load', async (e) => {
                 sortedProducts.sort((a, b) => b.price - a.price);
                 break;
             default:
-                // Keep original order for other sort options
                 break;
         }
 
@@ -218,7 +217,6 @@ window.addEventListener('load', async (e) => {
         }
     });
 
-    // Update cart count
     const updateCartCount = async () => {
         const user = JSON.parse(localStorage.getItem('user'));
         if (!user) return;
@@ -249,5 +247,5 @@ window.addEventListener('load', async (e) => {
     })
 
     updateCartCount();
-    setInterval(updateCartCount, 30000); // Update every 30 seconds
+    setInterval(updateCartCount, 30000);
 });

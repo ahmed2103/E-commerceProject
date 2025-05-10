@@ -7,7 +7,7 @@ window.addEventListener("load", async function () {
     }
 
     try {
-
+        // Check if user is logged in
         // Initialize page
         document.getElementById("sidebar-username").textContent = user.name;
         document.getElementById("sidebar-email").textContent = user.email;
@@ -67,7 +67,6 @@ window.addEventListener("load", async function () {
                 document.getElementById("profile-info-display").style.display = "block";
             } catch (error) {
                 console.error("Error updating profile:", error);
-                alert("Failed to update profile. Please try again.");
             }
         });
 
@@ -106,7 +105,6 @@ window.addEventListener("load", async function () {
                     document.getElementById("completed-orders").textContent = orders.filter(o => o.status === "delivered").length;
                 } catch (error) {
                     console.error("Error loading dashboard:", error);
-                    alert("Failed to load dashboard information.");
                 }
             } else if (sectionHash === "#orders") {
                 document.getElementById("orders-section").style.display = "block";
@@ -225,6 +223,5 @@ window.addEventListener("load", async function () {
         await navigateToSection(window.location.hash || "#profile");
     } catch (error) {
         console.error("Error initializing account page:", error);
-        alert("Failed to load account information. Please try again later.");
     }
 });
