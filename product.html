@@ -12,12 +12,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <script src="./script/product.js" type="module"></script>
   </head>
   <body>
     <div class="container">
       <section class="product">
         <div class="product-img">
-          <img
+          <img id="product-img"
             src="https://m.media-amazon.com/images/I/71ShOujI6jL._AC_SL1500_.jpg"
             alt="Product Image"
           />
@@ -25,7 +26,7 @@
             <input
               type="number"
               name="quantity"
-              id=""
+              id="qty"
               placeholder="1"
               value="1"
               min="1"
@@ -35,7 +36,7 @@
         </div>
         <div class="product-info">
           <h3 class="product-title">Product Name</h3>
-          <p>Product description will go here.</p>
+          <p id="product-description">Product description will go here.</p>
           <div class="product-rating">
             <div class="stars">
               <span class="star">★</span>
@@ -59,7 +60,7 @@
                 alt=""
               />
             </div>
-            <p>seller name</p>
+            <p id="seller-name">seller name</p>
           </div>
         </div>
       </section>
@@ -92,8 +93,8 @@
           </div>
         </div>
         <div class="product-add-review">
-          <input type="text" placeholder="write your review" />
-          <button class="btn btn-secondary">Add</button>
+          <input id="comment-input" type="text" placeholder="write your review" />
+          <button class="btn btn-secondary" id="add-comment">Add</button>
         </div>
       </section>
     </div>

@@ -121,7 +121,17 @@
       "price": 2500,
       "description": "Latest Apple flagship phone",
       "category": "Mobiles",
-      "status": "approved"
+      "status": "approved",
+      "comments": [
+        {
+          "customerName": "Jane Smith",
+          "comment": "Amazing phone! Love the camera quality."
+        },
+        {
+          "customerName": "new Smith",
+          "comment": "wow."
+        }
+      ]
     },
     {
       "id": "2",
@@ -130,7 +140,17 @@
       "price": 2300,
       "description": "Samsung's premium smartphone",
       "category": "Mobiles",
-      "status": "approved"
+      "status": "approved",
+      "comments": [
+        {
+          "customerName": "Jane Smith",
+          "comment": "Amazing phone! Love the camera quality."
+        },
+        {
+          "customerName": "new Smith",
+          "comment": "wow."
+        }
+      ]
     },
     {
       "id": "3",
@@ -164,6 +184,20 @@
       "sellerId": "3",
       "name": "ASUS TUF Gaming A15 FA506NFR-HN007W",
       "price": "1500",
+      "comments": [
+        {
+          "customerName": "Ahmed Smith",
+          "comment": "Amazing laptop! Love the camera quality."
+        },
+        {
+          "customerName": "mohamed Smith",
+          "comment": "wow. good quality"
+        },
+        {
+          "customerName": "Admin User",
+          "comment": "good laptop"
+        }
+      ],
       "category": "1",
       "description": "Gaming Laptop AMD R7 7435HS 8GB RAM 512GB SSD RTX 2050 4GB 15.6” FHD 144Hz Win11 Graphite Black - 90NR0JU7-M000R0",
       "status": "approved",
@@ -194,7 +228,16 @@
     {
       "id": "0169",
       "userId": "3",
-      "products": []
+      "products": [
+        {
+          "productId": "3",
+          "quantity": 1
+        },
+        {
+          "productId": "6",
+          "quantity": 1
+        }
+      ]
     }
   ]
 }
