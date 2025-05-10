@@ -14,7 +14,6 @@ const truncate = (elementBody, row) => {
 const instancesGetter = async(modelStr) => {
     const res = await fetch(`http://localhost:3000/${modelStr}`);
     const instances = await res.json();
-    console.log(instances);
     return instances;
 }
 const partitioner = (list, pageNum, pageSize) => {
@@ -66,7 +65,7 @@ const productRowsCreator = (models, itemToClone,bodyElement, objSpecific,classes
 const orderRowsCreator = async (orderList, orderBody, rowForClone) => {
     const [users, products] = await Promise.all([
         instancesGetter('users'),
-        instancesGetter('products')
+        instancesGetter('products'),
     ]);
 
     for (const order of orderList) {
@@ -80,16 +79,10 @@ const orderRowsCreator = async (orderList, orderBody, rowForClone) => {
         const statusSelect = cells[1].querySelector('.orderState');
         if (statusSelect) statusSelect.value = order.status;
 
-        const orderDetails = order.products.map(product => {
-            const prod = products.find(p => p.id === product.productId);
-            const name = prod?.name || 'N/A';
-            return `Product: ${name}\tQuantity: ${product.quantity}`;
-        }).join('\n');
 
-        const detailsPre = cells[2].querySelector('pre');
-        if (detailsPre) detailsPre.textContent = orderDetails;
+        cells[2].textContent = order.quantity
 
-        cells[3].textContent = order.orderDate || 'N/A';
+        cells[3].textContent = order.date || 'N/A';
 
         newRow.style.display = 'table-row';
         orderBody.appendChild(newRow);
@@ -156,5 +149,39 @@ const confirmDelete = () => {
     })
 }
 
+const addProductCart = async (target) => {
+    if (target.classList.contains('add-to-cart')) {
+        const productCard = target.closest('.product-card');
+        const productId = productCard.getAttribute('id');
+        const quantity =  1;
 
-export {partitioner,confirmUpdate, confirmDelete, instancesGetter, storeInSession, display, truncate, userRowsCreator, orderRowsCreator, hide, productCardCreator, productRowsCreator};
+        const user = JSON.parse(localStorage.getItem('user'));
+        const carts = await instancesGetter('carts');
+        const cart = carts.find(c => c.userId === user.id);
+
+        if (cart) {
+            const existingProduct = cart.products.find(p => p.productId === productId);
+            if (existingProduct) {
+                existingProduct.quantity += quantity;
+            } else {
+                cart.products.push({ productId, quantity });
+            }
+            await fetch(`http://localhost:3000/carts/${cart.id}`, {
+                method: 'PUT',
+                body: JSON.stringify(cart)
+            });
+        } else {
+            const newCart = {
+                userId: user.id,
+                products: [{ productId, quantity }]
+            };
+            await fetch('http://localhost:3000/carts', {
+                method: 'POST',
+                body: JSON.stringify(newCart)
+            });
+        }
+    }
+}
+
+
+export {partitioner,confirmUpdate, confirmDelete, instancesGetter, addProductCart,storeInSession, display, truncate, userRowsCreator, orderRowsCreator, hide, productCardCreator, productRowsCreator};
