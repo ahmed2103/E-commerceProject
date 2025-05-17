@@ -88,7 +88,9 @@ window.addEventListener('load', async (e) => {
     });
 
     productsGrid.addEventListener('click', async (e) => {
-        await addProductCart(e.target, e);
+        if (e.target.classList.contains('add-to-cart')) {
+            await addProductCart(e.target);
+        }
     });
 
     clearCartBtn.addEventListener('click', async () => {
@@ -246,6 +248,6 @@ window.addEventListener('load', async (e) => {
         }
     })
 
-    updateCartCount();
-    setInterval(updateCartCount, 30000);
+    await updateCartCount();
+    setInterval(updateCartCount, 300);
 });

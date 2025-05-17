@@ -31,7 +31,9 @@ window.addEventListener("load", function () {
                         name: formData.get('name'),
                         email: formData.get('email'),
                         password: formData.get('password'),
-                        role: formData.get('role')
+                        role: formData.get('role'),
+                        phone: formData.get('phone'),
+                        gender: formData.get('gender')
                     })
                 })
                 .then(response => {

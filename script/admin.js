@@ -28,12 +28,14 @@ window.addEventListener('load', async (ev) => {
     const updateModal = document.getElementById('updateModal');
     let userAdd;
 
+
     const lastOrdersBody = document.getElementById('lastOrdersBody');
     const lastOrders = (await instancesGetter('orders')).slice(-5).reverse();
 
 
-    const admin = JSON.parse(localStorage.getItem('user'));
-    userName.innerText = `Hello ${admin.name}`;
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user.role !== "admin") window.location.href = "./unauthorized.html";
+    userName.innerText = `Hello ${user.name}`;
 
     dashAncor.addEventListener('click', async () => {
         document.getElementById('oCount').textContent = (await instancesGetter('orders')).length;

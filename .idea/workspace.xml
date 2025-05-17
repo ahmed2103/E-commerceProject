@@ -5,13 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="360e6571-0551-4c63-83f7-63fe6180544b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Dell-G15-5530_3f8r-ps.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unauthorized.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/admin_dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/admin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/seller_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/seller_dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/seller.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/seller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/login.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,8 +90,11 @@
       <recent name="$PROJECT_DIR$/script" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.seller_dashboard.html">
+  <component name="RunManager" selected="JavaScript Debug.login.html">
     <configuration name="account.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/account.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="admin_dashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/admin_dashboard.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/index.html" useBuiltInWebServerPort="true">
@@ -90,19 +103,16 @@
     <configuration name="login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/login.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="product.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/product.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="seller_dashboard.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/E-commerceProject/seller_dashboard.html" useBuiltInWebServerPort="true">
+    <configuration name="logIn.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/script/logIn.js" working-dir="$PROJECT_DIR$/script">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.seller_dashboard.html" />
-        <item itemvalue="JavaScript Debug.account.html" />
-        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.login.html" />
-        <item itemvalue="JavaScript Debug.product.html" />
+        <item itemvalue="Node.js.logIn.js" />
+        <item itemvalue="JavaScript Debug.account.html" />
+        <item itemvalue="JavaScript Debug.admin_dashboard.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
@@ -151,7 +161,10 @@
       <workItem from="1746875829275" duration="7720000" />
       <workItem from="1746883574811" duration="2265000" />
       <workItem from="1746887985324" duration="15540000" />
-      <workItem from="1746905083639" duration="415000" />
+      <workItem from="1746905083639" duration="619000" />
+      <workItem from="1747244093089" duration="8269000" />
+      <workItem from="1747424787310" duration="727000" />
+      <workItem from="1747463493743" duration="1403000" />
     </task>
     <servers />
   </component>

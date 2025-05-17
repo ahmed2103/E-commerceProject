@@ -39,8 +39,8 @@ window.addEventListener('load', async () => {
             customerName,
             comment
         };
-
-        for (const comm of product.comments) {
+        const comments = product.comments || [];
+        for (const comm of comments) {
             if (comm.customerName === customerName) {
                 return;
             }

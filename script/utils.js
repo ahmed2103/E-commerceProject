@@ -110,8 +110,9 @@ const productCardCreator = (productList, productCard, productGrid, productModal)
         newProductCard.querySelector('img').alt = product.name;
         newProductCard.style.display = 'block';
 
-        newProductCard.addEventListener('click', () => {
-            window.location.href = 'product.html?id=' + product.id;
+        newProductCard.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart')) return;
+                window.location.href = 'product.html?id=' + product.id;
         })
         productGrid.appendChild(newProductCard);
     }
@@ -156,10 +157,7 @@ const confirmDelete = () => {
     })
 }
 
-const   addProductCart = async (target,e) => {
-    if (target.classList.contains('add-to-cart'))
-    {
-        e.stopPropagation();
+const addProductCart = async (target) => {
         const productCard = target.closest('.product-card');
         const productId = productCard.getAttribute('id');
         const quantity =  1;
@@ -182,14 +180,13 @@ const   addProductCart = async (target,e) => {
         } else {
             const newCart = {
                 userId: user.id,
-                products: [{ productId, quantity }]
+                products: [{productId, quantity}]
             };
             await fetch('http://localhost:3000/carts', {
                 method: 'POST',
                 body: JSON.stringify(newCart)
             });
         }
-    }
 }
 
 

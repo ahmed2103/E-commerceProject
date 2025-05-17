@@ -30,7 +30,9 @@ window.addEventListener('load', async () => {
     const form = document.querySelector('.seller-form');
 
     // Get seller from localStorage
-    const seller = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user.role !== "seller") window.location.href = "./unauthorized.html";
+    const seller = user;
     userName.innerText = `${seller.name}`;
 
     // Initialize Dashboard

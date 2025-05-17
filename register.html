@@ -38,18 +38,28 @@
                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                    title="Password must be at least 8 characters, include at least one letter and one number.">
             <div id="password-error">password don't match</div>
-
           </div>
+          <div class="form-group">
+            <label for="phone">phone Number</label>
+            <input type="tel" name="phone" id="phone" pattern="^\+?[0-9\s\-]{7,15}$" placeholder="+1234567890" required>
+          </div>
+          <br>
+          <label>please choose gender</label>
+          <input type="radio" name="gender" id="Male" checked value="Male">
+          <label for="Male">Male</label>
+          <input type="radio" name="gender" id="Female" value="Female">
+          <label for="Female">Female</label><br><br>
             <label>please choose account type</label>
             <input type="radio" name="role" id="seller" value="seller">
             <label for="seller">Seller</label>
             <input type="radio" name="role" id="customer" checked value="customer">
             <label for="customer">Customer</label>
+          <br><br>
           <div class="form-group">
             <button type="submit" class="btn btn-primary">Register</button>
           </div>
           <div class="form-footer">
-            <p>Already have an account? <a href="login.html">Login</a></p>
+            <p>Already have an account? <a href="login.html"><u>Login</u></a></p>
           </div>
         </form>
       </div>
